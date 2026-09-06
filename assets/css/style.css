@@ -1,4 +1,3 @@
-
 /* =========================================================
    THEME VARIABLES
 ========================================================= */
@@ -807,6 +806,8 @@ section > h2 {
 
 /* =========================================================
    PROJECTS
+   Glass-hover treatment: frosted card, soft gradient sheen,
+   border glow, and a slight lift on hover.
 ========================================================= */
 
 #work:hover .project:not(:hover) {
@@ -826,20 +827,25 @@ section > h2 {
 
   align-items: center;
 
-  padding: 26px 0;
+  padding: 26px 20px;
 
-  border-bottom: 1px solid var(--border);
+  margin: 0 -20px;
 
-  text-decoration: none;
+  border-radius: 14px;
+
+  border: 1px solid transparent;
 
   color: inherit;
 
   transition:
-    opacity 0.25s var(--ease);
+    opacity 0.25s var(--ease),
+    border-color 0.35s var(--ease),
+    transform 0.35s var(--ease),
+    box-shadow 0.35s var(--ease);
 }
 
-.project:last-child {
-  border-bottom: none;
+.project + .project {
+  margin-top: 4px;
 }
 
 .project::before {
@@ -847,18 +853,35 @@ section > h2 {
 
   position: absolute;
 
-  inset: -12px -20px;
+  inset: 0;
 
   z-index: -1;
 
-  border-radius: 8px;
+  border-radius: 14px;
 
-  background: var(--hover-bg);
+  background: linear-gradient(
+    135deg,
+    var(--accent-soft),
+    transparent 65%
+  );
+
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
 
   opacity: 0;
 
   transition:
-    opacity 0.2s var(--ease);
+    opacity 0.35s var(--ease);
+}
+
+.project:hover {
+  border-color: var(--border);
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 14px 30px var(--shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .project:hover::before {
@@ -866,23 +889,23 @@ section > h2 {
 }
 
 .project .thumb {
-  border-radius: 6px;
+  border-radius: 8px;
 
   overflow: hidden;
 
-  border: 2px solid var(--border);
+  border: 1px solid var(--border);
 
   background: var(--surface);
 
   transition:
-    border-color 0.2s var(--ease),
-    transform 0.2s var(--ease);
+    border-color 0.3s var(--ease),
+    transform 0.35s var(--ease);
 }
 
 .project:hover .thumb {
   border-color: var(--heading);
 
-  transform: translateY(-2px);
+  transform: scale(1.03);
 }
 
 .project .thumb svg {
@@ -904,35 +927,8 @@ section > h2 {
 
   color: var(--heading);
 
-  display: flex;
-
-  align-items: center;
-
-  gap: 8px;
-
   transition:
     color 0.2s var(--ease);
-}
-
-.project h3 svg {
-  width: 15px;
-  height: 15px;
-
-  color: var(--muted);
-
-  opacity: 0;
-
-  transform: translate(-4px, 2px);
-
-  transition:
-    opacity 0.2s var(--ease),
-    transform 0.2s var(--ease);
-}
-
-.project:hover h3 svg {
-  opacity: 1;
-
-  transform: translate(0, 2px);
 }
 
 .project:hover h3 {
@@ -1005,6 +1001,64 @@ section > h2 {
 
 .project:hover .num {
   color: var(--heading);
+}
+
+
+/* ---------------------------------------------------------
+   SIDE COLUMN — Live Demo + Year
+--------------------------------------------------------- */
+
+.project-side {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-end;
+  align-self: start;
+
+  justify-content: flex-start;
+
+  gap: 12px;
+}
+
+
+/* ---------------------------------------------------------
+   LIVE DEMO BUTTON
+--------------------------------------------------------- */
+
+.btn-demo {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 7px 16px;
+
+  border-radius: 999px;
+
+  font-size: 0.72rem;
+  font-weight: 700;
+
+  letter-spacing: 0.02em;
+
+  white-space: nowrap;
+
+  text-decoration: none;
+
+  background: var(--heading);
+  color: var(--bg);
+
+  border: 1px solid var(--heading);
+
+  transition:
+    opacity 0.2s var(--ease),
+    transform 0.2s var(--ease);
+}
+
+.btn-demo:hover {
+  opacity: 0.85;
+
+  transform: translateY(-1px);
 }
 
 
@@ -1093,6 +1147,150 @@ footer a:hover {
   color: var(--heading);
 
   border-color: var(--heading);
+}
+
+
+/* =========================================================
+   STATE PAGES
+   Shared layout for maintenance / 404 / error pages
+========================================================= */
+
+.state-page {
+  min-height: 100vh;
+
+  max-width: 560px;
+
+  margin: 0 auto;
+
+  padding: 48px 24px;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.state-illustration {
+  width: 220px;
+
+  margin-bottom: 40px;
+}
+
+.state-illustration svg {
+  display: block;
+
+  width: 100%;
+  height: auto;
+}
+
+.state-label {
+  font-size: 0.72rem;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.08em;
+
+  color: var(--muted);
+
+  margin: 0 0 14px;
+}
+
+.state-page h1 {
+  font-family: "Inter", sans-serif;
+
+  font-weight: 800;
+
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+
+  letter-spacing: -0.02em;
+
+  line-height: 1.2;
+
+  color: var(--heading);
+
+  margin: 0 0 14px;
+}
+
+.state-text {
+  color: var(--muted);
+
+  font-size: 1rem;
+
+  line-height: 1.6;
+
+  max-width: 40ch;
+
+  margin: 0 0 32px;
+}
+
+.state-actions {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 12px;
+
+  justify-content: center;
+}
+
+
+/* ---------------------------------------------------------
+   BUTTONS
+--------------------------------------------------------- */
+
+.btn-home {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 11px 22px;
+
+  border-radius: 8px;
+
+  font-size: 0.85rem;
+
+  font-weight: 600;
+
+  letter-spacing: -0.01em;
+
+  text-decoration: none;
+
+  border: 1px solid var(--heading);
+
+  background: var(--heading);
+  color: var(--bg);
+
+  transition:
+    opacity 0.2s var(--ease),
+    transform 0.2s var(--ease);
+}
+
+.btn-home:hover {
+  opacity: 0.88;
+
+  transform: translateY(-1px);
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE
+--------------------------------------------------------- */
+
+@media (max-width: 700px) {
+
+  .state-illustration {
+    width: 170px;
+  }
+
 }
 
 
@@ -1229,7 +1427,15 @@ footer a:hover {
     gap: 14px;
   }
 
-  .project .num {
+  .project-side {
+    flex-direction: row;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    width: 100%;
+
     order: -1;
   }
 

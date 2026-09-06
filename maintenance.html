@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+  <title>Under Maintenance</title>
+
+  <meta
+    name="description"
+    content="This site is temporarily down for maintenance. Please check back shortly.">
+
+  <meta name="robots" content="noindex">
+
+  <!-- Favicon -->
+  <link
+    rel="icon"
+    type="image/png"
+    href="assets/images/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <link
+    rel="stylesheet"
+    href="assets/css/style.css">
+
+  <!-- Apply saved theme silently (no toggle UI on this page) -->
+  <script>
+    (function () {
+      var saved = localStorage.getItem('portfolio-theme');
+      document.documentElement.setAttribute(
+        'data-theme',
+        (saved === 'light' || saved === 'dark' || saved === 'system')
+          ? saved
+          : 'light'
+      );
+    })();
+  </script>
+
+</head>
+
+
+<body>
+
+
+  <!-- =========================================================
+       STATE PAGE — UNDER MAINTENANCE
+  ========================================================= -->
+
+  <div class="state-page reveal">
+
+
+    <!-- =====================================================
+         ILLUSTRATION
+    ===================================================== -->
+
+    <div class="state-illustration">
+
+      <svg
+        viewBox="0 0 240 160"
+        xmlns="http://www.w3.org/2000/svg">
+
+        <rect
+          x="0.5"
+          y="0.5"
+          width="239"
+          height="159"
+          rx="10"
+          fill="var(--surface)"
+          stroke="var(--border)" />
+
+        <circle cx="20" cy="20" r="3" fill="var(--border)" />
+        <circle cx="32" cy="20" r="3" fill="var(--border)" />
+        <circle cx="44" cy="20" r="3" fill="var(--border)" />
+
+        <line
+          x1="0.5"
+          y1="34"
+          x2="239.5"
+          y2="34"
+          stroke="var(--border)" />
+
+        <!-- gear -->
+        <g
+          transform="translate(120,92)"
+          fill="none"
+          stroke="var(--accent)"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round">
+
+          <circle r="24" />
+          <circle r="7.5" />
+
+          <line x1="0" y1="-33" x2="0" y2="-24" />
+          <line x1="0" y1="33" x2="0" y2="24" />
+          <line x1="-33" y1="0" x2="-24" y2="0" />
+          <line x1="33" y1="0" x2="24" y2="0" />
+
+          <line x1="-23" y1="-23" x2="-17" y2="-17" />
+          <line x1="23" y1="-23" x2="17" y2="-17" />
+          <line x1="-23" y1="23" x2="-17" y2="17" />
+          <line x1="23" y1="23" x2="17" y2="17" />
+
+        </g>
+
+        <!-- progress bar -->
+        <line
+          x1="55"
+          y1="140"
+          x2="185"
+          y2="140"
+          stroke="var(--border)"
+          stroke-width="4"
+          stroke-linecap="round" />
+
+        <line
+          x1="55"
+          y1="140"
+          x2="130"
+          y2="140"
+          stroke="var(--accent)"
+          stroke-width="4"
+          stroke-linecap="round" />
+
+      </svg>
+
+    </div>
+
+
+    <!-- =====================================================
+         COPY
+    ===================================================== -->
+
+    <p class="state-label">
+      503 · Scheduled Maintenance
+    </p>
+
+    <h1>
+      We'll be right back.
+    </h1>
+
+    <p class="state-text">
+      This site is currently undergoing scheduled maintenance while
+      I make some improvements. Thanks for your patience — please
+      check back shortly.
+    </p>
+
+  </div>
+
+
+</body>
+
+</html>
