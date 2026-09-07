@@ -243,7 +243,7 @@ aside {
 }
 
 .identity .role {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
 
   color: var(--heading);
 
@@ -257,7 +257,7 @@ aside {
 .identity p {
   color: var(--muted);
 
-  font-size: 1.125rem;
+  font-size: 16px;
 
   max-width: 34ch;
 
@@ -689,7 +689,7 @@ section > h2 {
 .job h3 {
   margin: 0 0 6px;
 
-  font-size: 1.05rem;
+  font-size: 1.0rem;
 
   font-weight: 700;
 
@@ -736,7 +736,7 @@ section > h2 {
 }
 
 .job ul li {
-  font-size: 0.74rem;
+  font-size: 0.70rem;
 
   font-weight: 500;
 
@@ -919,7 +919,7 @@ section > h2 {
 .project h3 {
   margin: 0 0 8px;
 
-  font-size: 1.1rem;
+  font-size: 1.0rem;
 
   font-weight: 700;
 
@@ -941,6 +941,8 @@ section > h2 {
   color: var(--muted);
 
   max-width: 56ch;
+
+  font-size: .875rem;
 }
 
 .project ul {
@@ -958,7 +960,7 @@ section > h2 {
 }
 
 .project ul li {
-  font-size: 0.74rem;
+  font-size: 0.70rem;
 
   font-weight: 500;
 
