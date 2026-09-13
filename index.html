@@ -5,15 +5,91 @@
 
   <meta charset="UTF-8">
 
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0a0b0f">
+
+  <!-- =========================================================
+       THEME — FLASH PREVENTION
+       Runs synchronously, before the stylesheet paints, so the
+       correct theme (saved preference, or the OS preference by
+       default) is set on <html> from the very first frame —
+       no flash from dark to light (or back) after JS loads.
+  ========================================================= -->
+
+  <script>
+    (function () {
+
+      var saved = localStorage.getItem('portfolio-theme');
+
+      var theme =
+        (saved === 'light' || saved === 'dark' || saved === 'system')
+          ? saved
+          : 'system';
+
+      document.documentElement.setAttribute('data-theme', theme);
+
+      var resolved = theme;
+
+      if (theme === 'system') {
+        resolved =
+          window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light';
+      }
+
+      var meta = document.querySelector('meta[name="theme-color"]');
+
+      if (meta) {
+        meta.setAttribute(
+          'content',
+          resolved === 'light' ? '#f7f7f7' : '#0a0b0f'
+        );
+      }
+
+    })();
+  </script>
+
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0">
 
-  <title>Jahzeel Kiel</title>
+  <title>Jahzeel Kiel Peras — .NET Developer</title>
 
   <meta
     name="description"
     content="Jahzeel Kiel Peras, .NET Developer — selected work, experience, and contact.">
+
+  <!--
+    UPDATE ME: replace with your real deployed domain before publishing.
+    Used below for the canonical link and Open Graph / Twitter Card image
+    and URL, which require absolute URLs to render correctly when shared.
+  -->
+  <link rel="canonical" href="https://your-domain.com/">
+
+
+  <!-- =========================================================
+       OPEN GRAPH / TWITTER CARD
+       Controls how the page looks when shared on LinkedIn,
+       Twitter/X, Slack, Discord, etc.
+  ========================================================= -->
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Jahzeel Kiel Peras">
+  <meta property="og:title" content="Jahzeel Kiel Peras — .NET Developer">
+  <meta
+    property="og:description"
+    content="Selected work, experience, and contact — .NET, C#, and SQL Server.">
+  <meta property="og:url" content="https://your-domain.com/">
+  <!-- UPDATE ME: a 1200x630 social preview image, absolute URL -->
+  <meta property="og:image" content="https://your-domain.com/assets/images/og-image.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Jahzeel Kiel Peras — .NET Developer">
+  <meta
+    name="twitter:description"
+    content="Selected work, experience, and contact — .NET, C#, and SQL Server.">
+  <meta name="twitter:image" content="https://your-domain.com/assets/images/og-image.png">
+
 
   <!-- Favicon -->
   <link
@@ -36,10 +112,74 @@
     rel="stylesheet"
     href="assets/css/style.css">
 
+
+  <!-- =========================================================
+       STRUCTURED DATA
+       Helps search engines understand who this site is about.
+  ========================================================= -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Jahzeel Kiel Peras",
+    "jobTitle": ".NET Developer",
+    "url": "https://your-domain.com/",
+    "email": "mailto:jhzlklprs@gmail.com",
+    "sameAs": [
+      "https://github.com/jhzlklprs",
+      "https://linkedin.com/jhzlklprs",
+      "https://codepen.io/jhzlklprs"
+    ]
+  }
+  </script>
+
 </head>
 
 
+
 <body>
+
+
+  <!-- =========================================================
+       SKIP TO CONTENT
+       Hidden until focused — lets keyboard users bypass the
+       sidebar (identity, nav, socials, theme toggle) and jump
+       straight to the page content.
+  ========================================================= -->
+
+  <a href="#main-content" class="skip-link">
+    Skip to content
+  </a>
+
+
+  <!-- =========================================================
+       PRELOADER
+  ========================================================= -->
+
+  <div
+    id="preloader"
+    role="status"
+    aria-live="polite"
+    aria-label="Loading">
+
+    <div class="preloader-inner">
+
+      <div class="preloader-label">
+        Initializing
+      </div>
+
+      <div class="preloader-bar">
+        <div class="preloader-bar-fill"></div>
+      </div>
+
+      <div class="preloader-percent">
+        00%
+      </div>
+
+    </div>
+
+  </div>
 
 
   <!-- =========================================================
@@ -109,7 +249,8 @@
             <li>
               <a
                 href="#about"
-                class="active">
+                class="active"
+                aria-current="location">
 
                 <span class="dash"></span>
 
@@ -181,7 +322,7 @@
           <a
             href="https://github.com/jhzlklprs"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             aria-label="GitHub">
 
             <svg
@@ -203,7 +344,7 @@
           <a
             href="https://linkedin.com/jhzlklprs"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             aria-label="LinkedIn">
 
             <svg
@@ -232,7 +373,7 @@
           <a
             href="https://codepen.io/jhzlklprs"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             aria-label="CodePen">
 
             <svg
@@ -265,11 +406,49 @@
   class="theme-toggle"
   aria-label="Theme selector">
 
+
+
+  <button
+    type="button"
+    class="theme-button active"
+    data-theme-value="system"
+    aria-label="System theme"
+    aria-pressed="true"
+    title="System theme">
+
+    <!-- Monitor Icon -->
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      aria-hidden="true">
+
+      <rect
+        x="3"
+        y="4"
+        width="18"
+        height="14"
+        rx="2"
+        ry="2">
+      </rect>
+
+      <path
+        d="M8 21h8">
+      </path>
+
+      <path
+        d="M12 18v3">
+      </path>
+
+    </svg>
+
+  </button>
+
   <button
     type="button"
     class="theme-button"
     data-theme-value="light"
     aria-label="Light theme"
+    aria-pressed="false"
     title="Light theme">
 
     <!-- Sun Icon -->
@@ -326,6 +505,7 @@
     class="theme-button"
     data-theme-value="dark"
     aria-label="Dark theme"
+    aria-pressed="false"
     title="Dark theme">
 
     <!-- Moon Icon -->
@@ -344,39 +524,6 @@
   </button>
 
 
-  <button
-    type="button"
-    class="theme-button"
-    data-theme-value="system"
-    aria-label="System theme"
-    title="System theme">
-
-    <!-- Monitor Icon -->
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      aria-hidden="true">
-
-      <rect
-        x="3"
-        y="4"
-        width="18"
-        height="14"
-        rx="2"
-        ry="2">
-      </rect>
-
-      <path
-        d="M8 21h8">
-      </path>
-
-      <path
-        d="M12 18v3">
-      </path>
-
-    </svg>
-
-  </button>
 
 </div>
 
@@ -390,7 +537,7 @@
          MAIN CONTENT
     ========================================================= -->
 
-    <main>
+    <main id="main-content" tabindex="-1">
 
 
       <!-- =====================================================
@@ -645,7 +792,7 @@
           <a
             href="resume.pdf"
             target="_blank"
-            rel="noopener">
+            rel="noopener noreferrer">
 
             View Full Résumé
 
@@ -772,7 +919,7 @@
               class="btn-demo"
               href="404.html"
               target="_blank"
-              rel="noopener">
+              rel="noopener noreferrer">
 
               Live Demo
 
@@ -871,7 +1018,7 @@
               class="btn-demo"
               href="maintenance.html"
               target="_blank"
-              rel="noopener">
+              rel="noopener noreferrer">
 
               Live Demo
 
@@ -971,11 +1118,9 @@
 
             <a
               class="btn-demo"
-              href="maintenance.html"
-              target="_blank"
-              rel="noopener">
+              href="index.html">
 
-              Live Demo
+              You're Viewing It
 
             </a>
 

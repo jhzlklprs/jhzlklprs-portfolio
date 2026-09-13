@@ -3,21 +3,40 @@
 ========================================================= */
 
 :root {
-  /* Default theme: Dark */
-  --bg: #0a0a0a;
-  --surface: #111111;
+  /* Default theme: Dark — matches theme.html schema palette */
+  --bg: #0a0b0f;
+  --surface: #12141b;
 
-  --text: #d4d4d4;
-  --heading: #f5f5f5;
-  --muted: #737373;
+  --text: #c7c9d1;
+  --heading: #f2f3f5;
+  --muted: #9599a6;
 
-  --accent: #f5f5f5;
-  --accent-soft: rgba(255, 255, 255, 0.06);
+  --accent: #5fd4e0;
+  --accent-soft: rgba(95, 212, 224, 0.1);
 
-  --border: rgba(255, 255, 255, 0.12);
-  --shadow: rgba(0, 0, 0, 0.45);
+  --border: rgba(255, 255, 255, 0.09);
+  --shadow: rgba(0, 0, 0, 0.5);
 
-  --hover-bg: rgba(255, 255, 255, 0.045);
+  --hover-bg: rgba(95, 212, 224, 0.06);
+
+  --dot-color: rgba(255, 255, 255, 0.09);
+
+  --font-sans:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+
+  --font-mono:
+    "JetBrains Mono",
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    monospace;
 
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -44,6 +63,8 @@ html[data-theme="light"] {
   --shadow: rgba(0, 0, 0, 0.08);
 
   --hover-bg: rgba(0, 0, 0, 0.035);
+
+  --dot-color: rgba(0, 0, 0, 0.065);
 
   color-scheme: light;
 }
@@ -72,6 +93,8 @@ html[data-theme="light"] {
 
     --hover-bg: rgba(0, 0, 0, 0.035);
 
+    --dot-color: rgba(0, 0, 0, 0.065);
+
     color-scheme: light;
   }
 
@@ -85,22 +108,153 @@ html[data-theme="light"] {
 @media (prefers-color-scheme: dark) {
 
   html[data-theme="system"] {
-    --bg: #0a0a0a;
-    --surface: #111111;
+    --bg: #0a0b0f;
+    --surface: #12141b;
 
-    --text: #d4d4d4;
-    --heading: #f5f5f5;
-    --muted: #737373;
+    --text: #c7c9d1;
+    --heading: #f2f3f5;
+    --muted: #9599a6;
 
-    --accent: #f5f5f5;
-    --accent-soft: rgba(255, 255, 255, 0.06);
+    --accent: #5fd4e0;
+    --accent-soft: rgba(95, 212, 224, 0.1);
 
-    --border: rgba(255, 255, 255, 0.12);
-    --shadow: rgba(0, 0, 0, 0.45);
+    --border: rgba(255, 255, 255, 0.09);
+    --shadow: rgba(0, 0, 0, 0.5);
 
-    --hover-bg: rgba(255, 255, 255, 0.045);
+    --hover-bg: rgba(95, 212, 224, 0.06);
+
+    --dot-color: rgba(255, 255, 255, 0.09);
 
     color-scheme: dark;
+  }
+
+}
+
+
+/* =========================================================
+   SKIP LINK
+========================================================= */
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 10000;
+
+  padding: 10px 18px;
+
+  background: var(--heading);
+  color: var(--bg);
+
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+
+  border-radius: 8px;
+
+  text-decoration: none;
+
+  transition: top 0.2s var(--ease);
+}
+
+.skip-link:focus {
+  top: 16px;
+}
+
+
+/* =========================================================
+   PRELOADER
+   Dot-grid backdrop, mono eyebrow label, cyan progress bar —
+   matches theme.html's schema-card aesthetic.
+========================================================= */
+
+html.is-loading,
+html.is-loading body {
+  overflow: hidden;
+  height: 100%;
+}
+
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(circle, var(--dot-color) 1px, transparent 1px);
+  background-size: 22px 22px;
+
+  transition:
+    opacity 0.5s var(--ease),
+    visibility 0.5s var(--ease);
+}
+
+#preloader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.preloader-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 16px;
+
+  font-family: var(--font-mono);
+}
+
+.preloader-label {
+  font-size: 0.76rem;
+  font-weight: 600;
+
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  color: var(--accent);
+}
+
+.preloader-label::before {
+  content: "// ";
+  color: var(--muted);
+}
+
+.preloader-bar {
+  width: 220px;
+  height: 2px;
+
+  background: var(--border);
+  border-radius: 2px;
+
+  overflow: hidden;
+}
+
+.preloader-bar-fill {
+  display: block;
+
+  height: 100%;
+  width: 0%;
+
+  background: var(--accent);
+}
+
+.preloader-percent {
+  font-size: 0.72rem;
+
+  color: var(--muted);
+
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  #preloader {
+    transition: none;
   }
 
 }
@@ -127,18 +281,13 @@ html {
 }
 
 body {
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(circle, var(--dot-color) 1px, transparent 1px);
+  background-size: 22px 22px;
   color: var(--text);
 
-  font-family:
-    "Inter",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    "Helvetica Neue",
-    Arial,
-    sans-serif;
+  font-family: var(--font-sans);
 
   font-feature-settings:
     "ss03",
@@ -155,7 +304,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   transition:
-    background 0.25s var(--ease),
+    background-color 0.25s var(--ease),
     color 0.25s var(--ease);
 }
 
@@ -228,7 +377,7 @@ aside {
 ========================================================= */
 
 .identity h1 {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-sans);
 
   font-weight: 800;
   font-size: clamp(2.25rem, 4vw, 3rem);
@@ -294,8 +443,9 @@ nav a {
 
   color: var(--muted);
 
-  font-size: 0.78rem;
-  font-weight: 700;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 600;
 
   text-transform: uppercase;
 
@@ -530,10 +680,10 @@ section {
 }
 
 section > h2 {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-mono);
 
-  font-size: 0.78rem;
-  font-weight: 700;
+  font-size: 0.76rem;
+  font-weight: 600;
 
   text-transform: uppercase;
 
@@ -677,7 +827,8 @@ section > h2 {
 }
 
 .job time {
-  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
 
   font-weight: 500;
 
@@ -736,7 +887,8 @@ section > h2 {
 }
 
 .job ul li {
-  font-size: 0.70rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
 
   font-weight: 500;
 
@@ -960,7 +1112,8 @@ section > h2 {
 }
 
 .project ul li {
-  font-size: 0.70rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
 
   font-weight: 500;
 
@@ -989,6 +1142,7 @@ section > h2 {
 }
 
 .project .num {
+  font-family: var(--font-mono);
   font-size: 0.78rem;
 
   font-weight: 500;
@@ -1073,7 +1227,7 @@ section > h2 {
 }
 
 #contact .lead {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-sans);
 
   font-size: clamp(1.6rem, 3vw, 2.1rem);
 
@@ -1191,9 +1345,10 @@ footer a:hover {
 }
 
 .state-label {
+  font-family: var(--font-mono);
   font-size: 0.72rem;
 
-  font-weight: 700;
+  font-weight: 600;
 
   text-transform: uppercase;
 
@@ -1205,7 +1360,7 @@ footer a:hover {
 }
 
 .state-page h1 {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-sans);
 
   font-weight: 800;
 
@@ -1459,7 +1614,8 @@ footer a:hover {
 ========================================================= */
 
 a:focus-visible,
-button:focus-visible {
+button:focus-visible,
+main:focus-visible {
   outline: 2px solid var(--heading);
 
   outline-offset: 3px;
