@@ -1,3 +1,26 @@
+@import "tailwindcss";
+
+/* =========================================================
+   TAILWIND THEME TOKENS
+   Maps Tailwind utility classes (bg-surface, text-heading,
+   border-border, etc.) onto the CSS variables below, so new
+   code can use either utilities or the existing hand-written
+   classes interchangeably.
+========================================================= */
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-text: var(--text);
+  --color-heading: var(--heading);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-border: var(--border);
+  --font-sans-family: var(--font-sans);
+  --font-mono-family: var(--font-mono);
+}
+
 /* =========================================================
    THEME VARIABLES
 ========================================================= */
@@ -22,7 +45,7 @@
   --dot-color: rgba(255, 255, 255, 0.09);
 
   --font-sans:
-    "Inter",
+    var(--font-inter),
     -apple-system,
     BlinkMacSystemFont,
     "Segoe UI",
@@ -32,7 +55,7 @@
     sans-serif;
 
   --font-mono:
-    "JetBrains Mono",
+    var(--font-jetbrains-mono),
     ui-monospace,
     SFMono-Regular,
     Menlo,
