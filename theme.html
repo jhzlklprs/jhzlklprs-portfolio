@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Theme — Dark Schema</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:            #0a0b0f;
+    --bg-card:       #12141b;
+    --bg-card-hover: #171a22;
+    --border:        #262a35;
+    --border-soft:   #1a1c24;
+    --text-primary:  #f2f3f5;
+    --text-secondary:#9599a6;
+    --text-muted:    #565a66;
+
+    --accent-cyan:   #5fd4e0;
+    --accent-orange: #f0a860;
+    --accent-red:    #ef6f6f;
+    --accent-green:  #4ade9a;
+    --accent-purple: #b298f0;
+
+    --font-sans: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    background-color: var(--bg);
+    background-image:
+      radial-gradient(circle, rgba(255,255,255,0.045) 1px, transparent 1px);
+    background-size: 22px 22px;
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+  }
+
+  ::selection{ background: var(--accent-cyan); color: #05070a; }
+
+  .container-xl{ max-width: 1120px; }
+
+  /* ---------- Page header ---------- */
+  .page-eyebrow{
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: .12em;
+    color: var(--accent-cyan);
+    text-transform: uppercase;
+    display:flex; align-items:center; gap:.5rem;
+  }
+  .page-eyebrow::before{
+    content:"//"; color: var(--text-muted);
+  }
+  .page-title{
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -0.02em;
+    margin: .5rem 0 .75rem;
+  }
+  .page-sub{ color: var(--text-secondary); max-width: 640px; }
+
+  hr.rule{
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 3rem 0;
+  }
+
+  section h2{
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: .35rem;
+  }
+  section .section-note{
+    color: var(--text-secondary);
+    font-size: .95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ---------- Swatches ---------- */
+  .swatch{
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--bg-card);
+  }
+  .swatch-color{ height: 76px; }
+  .swatch-meta{
+    padding: .65rem .8rem;
+    font-family: var(--font-mono);
+    font-size: .78rem;
+  }
+  .swatch-meta .name{ color: var(--text-primary); font-weight:600; display:block; }
+  .swatch-meta .hex{ color: var(--text-muted); }
+
+  /* ---------- Cards (schema-card style) ---------- */
+  .schema-card{
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .schema-card-head{
+    padding: .85rem 1.1rem;
+    border-bottom: 1px solid var(--border);
+    display:flex; align-items:center; gap:.55rem;
+    font-family: var(--font-mono);
+    font-weight: 600;
+  }
+  .dot{ width:8px; height:8px; border-radius:50%; display:inline-block; flex-shrink:0; }
+  .dot-cyan{ background: var(--accent-cyan); }
+  .dot-orange{ background: var(--accent-orange); }
+  .dot-purple{ background: var(--accent-purple); }
+  .dot-green{ background: var(--accent-green); }
+  .dot-red{ background: var(--accent-red); }
+
+  .schema-row{
+    display:flex; justify-content:space-between;
+    padding: .65rem 1.1rem;
+    border-bottom: 1px solid var(--border-soft);
+    font-family: var(--font-mono);
+    font-size: .85rem;
+  }
+  .schema-row:last-child{ border-bottom:none; }
+  .schema-row .col-name{ color: var(--text-primary); }
+  .schema-row .col-name.fk{ color: var(--accent-orange); }
+  .schema-row .col-type{ color: var(--text-muted); }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    font-family: var(--font-sans);
+    font-weight: 600;
+    border-radius: 8px;
+    padding: .55rem 1.15rem;
+    font-size: .92rem;
+    border: 1px solid transparent;
+    transition: transform .12s ease, filter .12s ease;
+  }
+  .btn:active{ transform: translateY(1px); }
+
+  .btn-cyan{ background: var(--accent-cyan); color:#04141a; }
+  .btn-cyan:hover{ filter:brightness(1.08); color:#04141a; }
+
+  .btn-orange{ background: var(--accent-orange); color:#221200; }
+  .btn-orange:hover{ filter:brightness(1.08); color:#221200; }
+
+  .btn-outline-theme{
+    background: transparent;
+    border-color: var(--border);
+    color: var(--text-primary);
+  }
+  .btn-outline-theme:hover{
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+  }
+
+  .btn-ghost{
+    background: transparent;
+    color: var(--text-secondary);
+    border-color: transparent;
+  }
+  .btn-ghost:hover{ color: var(--text-primary); }
+
+  .btn-danger-theme{
+    background: rgba(239,111,111,0.12);
+    border-color: rgba(239,111,111,0.4);
+    color: var(--accent-red);
+  }
+  .btn-danger-theme:hover{
+    background: rgba(239,111,111,0.2);
+    color: var(--accent-red);
+  }
+
+  .btn:disabled{
+    opacity: .35;
+    cursor: not-allowed;
+  }
+
+  /* ---------- Badges / status pills ---------- */
+  .pill{
+    font-family: var(--font-mono);
+    font-size: .78rem;
+    padding: .3rem .7rem;
+    border-radius: 6px;
+    border: 1px solid;
+    display: inline-block;
+  }
+  .pill-cyan{ color:var(--accent-cyan); border-color:rgba(95,212,224,.4); background:rgba(95,212,224,.08); }
+  .pill-red{ color:var(--accent-red); border-color:rgba(239,111,111,.4); background:rgba(239,111,111,.08); }
+  .pill-green{ color:var(--accent-green); border-color:rgba(74,222,154,.4); background:rgba(74,222,154,.08); }
+  .pill-orange{ color:var(--accent-orange); border-color:rgba(240,168,96,.4); background:rgba(240,168,96,.08); }
+
+  /* ---------- Code block ---------- */
+  .code-block{
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.1rem 1.25rem;
+    font-family: var(--font-mono);
+    font-size: .86rem;
+    overflow-x: auto;
+  }
+  .code-block .kw{ color: var(--accent-purple); }
+  .code-block .fn{ color: var(--accent-orange); }
+  .code-block .tp{ color: var(--accent-cyan); }
+  .code-block .cm{ color: var(--text-muted); }
+  .code-block .val{ color: var(--accent-green); }
+
+  /* ---------- Form controls ---------- */
+  .form-control-theme, .form-select-theme{
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    border-radius: 8px;
+    font-family: var(--font-sans);
+  }
+  .form-control-theme:focus, .form-select-theme:focus{
+    background: var(--bg-card);
+    border-color: var(--accent-cyan);
+    color: var(--text-primary);
+    box-shadow: 0 0 0 3px rgba(95,212,224,.15);
+  }
+  .form-control-theme::placeholder{ color: var(--text-muted); }
+
+  /* ---------- Callout ---------- */
+  .callout{
+    border-left: 2px solid var(--accent-cyan);
+    padding: .3rem 0 .3rem 1rem;
+    color: var(--text-secondary);
+    font-size: .92rem;
+  }
+  .callout strong{ color: var(--text-primary); }
+
+  /* ---------- Nav / footer bits ---------- */
+  .theme-navbar{
+    background: rgba(10,11,15,0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .theme-navbar .brand{
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+  .theme-navbar .brand span{ color: var(--accent-cyan); }
+  .theme-navbar .nav-link{ color: var(--text-secondary); font-size:.92rem; }
+  .theme-navbar .nav-link:hover{ color: var(--text-primary); }
+
+  footer{
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: .8rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .token-table{ font-family: var(--font-mono); font-size:.85rem; color: var(--text-secondary); }
+  .token-table td{ border-color: var(--border) !important; padding: .55rem .5rem; }
+  .token-table td:first-child{ color: var(--text-primary); }
+</style>
+</head>
+<body>
+
+<nav class="theme-navbar sticky-top">
+  <div class="container-xl d-flex align-items-center justify-content-between py-3">
+    <div class="brand">portfolio<span>.theme</span></div>
+    <div class="d-none d-md-flex gap-4">
+      <a href="#palette" class="nav-link text-decoration-none">Palette</a>
+      <a href="#type" class="nav-link text-decoration-none">Type</a>
+      <a href="#buttons" class="nav-link text-decoration-none">Buttons</a>
+      <a href="#cards" class="nav-link text-decoration-none">Cards</a>
+      <a href="#forms" class="nav-link text-decoration-none">Forms</a>
+    </div>
+    <button class="btn btn-cyan btn-sm">Contact</button>
+  </div>
+</nav>
+
+<div class="container-xl py-5">
+
+  <!-- HEADER -->
+  <div class="page-eyebrow">DESIGN SYSTEM</div>
+  <h1 class="page-title">A dark, schema-inspired<br>portfolio palette.</h1>
+  <p class="page-sub">Near-black background, dotted grid texture, monospace accents, and five signal colors pulled straight from the reference deck. Everything below is copy-pasteable Bootstrap.</p>
+
+  <hr class="rule">
+
+  <!-- PALETTE -->
+  <section id="palette">
+    <h2>Color palette</h2>
+    <p class="section-note">Base surfaces, text hierarchy, and five accent colors used for identity/status/emphasis.</p>
+
+    <div class="row g-3 mb-4">
+      <div class="col-6 col-md-3">
+        <div class="swatch"><div class="swatch-color" style="background:#0a0b0f"></div>
+          <div class="swatch-meta"><span class="name">bg</span><span class="hex">#0a0b0f</span></div></div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="swatch"><div class="swatch-color" style="background:#12141b"></div>
+          <div class="swatch-meta"><span class="name">bg-card</span><span class="hex">#12141b</span></div></div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="swatch"><div class="swatch-color" style="background:#262a35"></div>
+          <div class="swatch-meta"><span class="name">border</span><span class="hex">#262a35</span></div></div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="swatch"><div class="swatch-color" style="background:#9599a6"></div>
+          <div class="swatch-meta"><span class="name">text-secondary</span><span class="hex">#9599a6</span></div></div>
+      </div>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-6 col-md-3">
+        <div class="swatch"><div class="swatch-color" style="background:#5fd4e0"></div>
+          <div class="swatch-meta"><span class="name">accent-cyan</span><span class="hex">#5fd4e0</span></div></div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="swatch"><div class="swatch-color" style="background:#f0a860"></div>
+          <div class="swatch-meta"><span class="name">accent-orange</span><span class="hex">#f0a860</span></div></div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="swatch"><div class="swatch-color" style="background:#ef6f6f"></div>
+          <div class="swatch-meta"><span class="name">accent-red</span><span class="hex">#ef6f6f</span></div></div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="swatch"><div class="swatch-color" style="background:#4ade9a"></div>
+          <div class="swatch-meta"><span class="name">accent-green</span><span class="hex">#4ade9a</span></div></div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="swatch"><div class="swatch-color" style="background:#b298f0"></div>
+          <div class="swatch-meta"><span class="name">accent-purple</span><span class="hex">#b298f0</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- TYPE -->
+  <section id="type">
+    <h2>Typography</h2>
+    <p class="section-note">Inter for headings and body copy, JetBrains Mono for labels, data, and code.</p>
+
+    <div class="schema-card p-4 mb-3">
+      <div class="page-eyebrow mb-2">SECTION LABEL</div>
+      <div style="font-size:2rem; font-weight:800; letter-spacing:-0.02em;">Heading — Inter 800</div>
+      <div class="text-secondary mt-1" style="max-width:520px;">Body text sits at 1rem with Inter 400, --text-secondary for supporting copy, and --text-muted for the quietest annotations.</div>
+      <div class="font-monospace mt-3" style="color:var(--accent-orange); font-size:.9rem;">field_name — JetBrains Mono 500</div>
+    </div>
+
+    <table class="table token-table">
+      <tbody>
+        <tr><td>Display</td><td>Inter, 800, -0.02em tracking</td></tr>
+        <tr><td>Body</td><td>Inter, 400–500</td></tr>
+        <tr><td>Labels / data / code</td><td>JetBrains Mono, 400–600</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <hr class="rule">
+
+  <!-- BUTTONS -->
+  <section id="buttons">
+    <h2>Buttons</h2>
+    <p class="section-note">Solid accents for primary actions, outline/ghost for secondary, and a muted red for destructive.</p>
+
+    <div class="d-flex flex-wrap gap-3 mb-3">
+      <button class="btn btn-cyan">Primary action</button>
+      <button class="btn btn-orange">Secondary accent</button>
+      <button class="btn btn-outline-theme">Outline</button>
+      <button class="btn btn-ghost">Ghost</button>
+      <button class="btn btn-danger-theme">Destructive</button>
+      <button class="btn btn-cyan" disabled>Disabled</button>
+    </div>
+
+    <div class="d-flex flex-wrap gap-2">
+      <span class="pill pill-cyan">scheduled</span>
+      <span class="pill pill-red">cancelled</span>
+      <span class="pill pill-green">completed</span>
+      <span class="pill pill-orange">no_show</span>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- CARDS -->
+  <section id="cards">
+    <h2>Cards &amp; borders</h2>
+    <p class="section-note">The recurring building block: 1px hairline border, 10–12px radius, header row with an identity dot.</p>
+
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="schema-card">
+          <div class="schema-card-head"><span class="dot dot-cyan"></span> project_card</div>
+          <div class="schema-row"><span class="col-name">title</span><span class="col-type">text</span></div>
+          <div class="schema-row"><span class="col-name fk">stack</span><span class="col-type">tags[]</span></div>
+          <div class="schema-row"><span class="col-name">year</span><span class="col-type">int</span></div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="schema-card">
+          <div class="schema-card-head"><span class="dot dot-purple"></span> contact_info</div>
+          <div class="schema-row"><span class="col-name">email</span><span class="col-type">text</span></div>
+          <div class="schema-row"><span class="col-name fk">socials</span><span class="col-type">jsonb</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout mt-4">
+      <strong>Note —</strong> borders never carry a shadow; hierarchy comes from border color and the accent dot, not elevation.
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- FORMS + CODE -->
+  <section id="forms">
+    <h2>Forms &amp; code</h2>
+    <p class="section-note">Inputs share the card surface; focus state uses a soft cyan ring.</p>
+
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label class="form-label small text-secondary">Name</label>
+          <input type="text" class="form-control form-control-theme" placeholder="Ada Lovelace">
+        </div>
+        <div class="mb-3">
+          <label class="form-label small text-secondary">Message</label>
+          <textarea class="form-control form-control-theme" rows="3" placeholder="Say hello..."></textarea>
+        </div>
+        <button class="btn btn-cyan">Send message</button>
+      </div>
+      <div class="col-md-6">
+        <div class="code-block">
+<span class="kw">const</span> <span class="fn">theme</span> = {<br>
+&nbsp;&nbsp;bg: <span class="val">'#0a0b0f'</span>,<br>
+&nbsp;&nbsp;card: <span class="val">'#12141b'</span>,<br>
+&nbsp;&nbsp;accent: <span class="tp">'#5fd4e0'</span> <span class="cm">// cyan</span><br>
+};
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="py-4">
+  <div class="container-xl d-flex justify-content-between flex-wrap gap-2">
+    <span>portfolio.theme · dark schema palette</span>
+    <span>bootstrap 5.3 · pure html/css/js</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
