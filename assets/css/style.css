@@ -1622,3 +1622,62 @@ main:focus-visible {
 
   border-radius: 4px;
 }
+
+
+/* =========================================================
+   ABOUT PHOTO
+   Fixed pixel width (not a fluid %) so the browser isn't
+   forced to resample the halftone pattern at a different
+   scale on every zoom level / viewport resize. Halftone/
+   dither art is high-frequency detail — fluid sizing is
+   what causes the "shifting pixels" look between 67% and
+   100% zoom.
+========================================================= */
+
+.about-photo {
+  margin: 0 0 28px;
+
+  border-radius: 12px;
+  overflow: hidden;
+
+  /* Fixed intrinsic size instead of a % of the column.
+     Adjust this to match your source image's real
+     display size (ideally export the halftone PNG at
+     this resolution, or 2x for retina). */
+  /* width: 288px; */
+  max-width: 75%;
+}
+
+.about-photo img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  object-fit: contain;
+  object-position: center;
+
+  filter: grayscale(15%);
+
+  /* Keeps dot edges crisp instead of blurring/moiré-ing
+     at non-integer scale factors. Try "crisp-edges" too —
+     browser support and look vary, test both against your
+     actual dither density. */
+  /* image-rendering: pixelated; */
+
+  transition: filter 0.3s var(--ease);
+}
+
+.about-photo:hover img {
+  filter: grayscale(0%);
+}
+
+@media (max-width: 700px) {
+
+  .about-photo {
+    width: 220px;
+    max-width: 60%;
+    height: auto;
+  }
+
+}
