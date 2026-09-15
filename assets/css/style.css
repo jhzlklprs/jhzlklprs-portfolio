@@ -21,6 +21,10 @@
 
   --dot-color: rgba(255, 255, 255, 0.09);
 
+  /* Status dot — small "currently working here" indicator */
+  --status-online: #4ade80;
+  --status-online-glow: rgba(74, 222, 128, 0.35);
+
   --font-sans:
     "Inter",
     -apple-system,
@@ -66,6 +70,9 @@ html[data-theme="light"] {
 
   --dot-color: rgba(0, 0, 0, 0.065);
 
+  --status-online: #16a34a;
+  --status-online-glow: rgba(22, 163, 74, 0.3);
+
   color-scheme: light;
 }
 
@@ -94,6 +101,9 @@ html[data-theme="light"] {
     --hover-bg: rgba(0, 0, 0, 0.035);
 
     --dot-color: rgba(0, 0, 0, 0.065);
+
+    --status-online: #16a34a;
+    --status-online-glow: rgba(22, 163, 74, 0.3);
 
     color-scheme: light;
   }
@@ -124,6 +134,9 @@ html[data-theme="light"] {
     --hover-bg: rgba(95, 212, 224, 0.06);
 
     --dot-color: rgba(255, 255, 255, 0.09);
+
+    --status-online: #4ade80;
+    --status-online-glow: rgba(74, 222, 128, 0.35);
 
     color-scheme: dark;
   }
@@ -376,6 +389,25 @@ aside {
    IDENTITY
 ========================================================= */
 
+/* Terminal-style "$ whoami" line above the name */
+
+.terminal-prompt {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 500;
+
+  color: var(--muted);
+
+  margin: 0 0 10px;
+
+  letter-spacing: 0.01em;
+}
+
+.terminal-prompt .prompt-sign {
+  color: var(--accent);
+  margin-right: 8px;
+}
+
 .identity h1 {
   font-family: var(--font-sans);
 
@@ -391,16 +423,38 @@ aside {
   color: var(--heading);
 }
 
+/* Blinking text-cursor after the typed name */
+
+.type-cursor {
+  display: inline-block;
+
+  color: var(--accent);
+
+  font-weight: 500;
+
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+
+  50% {
+    opacity: 0;
+  }
+
+}
+
 .identity .role {
-  font-size: 1.125rem;
+  font-family: var(--font-mono);
+
+  font-size: 0.95rem;
 
   color: var(--heading);
 
   font-weight: 500;
 
-  letter-spacing: -0.015em;
+  letter-spacing: 0;
 
-  margin: 12px 0 0;
+  margin: 14px 0 0;
 }
 
 .identity p {
@@ -698,6 +752,15 @@ section > h2 {
   border-bottom: 1px solid var(--border);
 }
 
+/* Comment-style prefix on section headings — "// Experience",
+   "// Selected Work" — reuses the same mono/accent treatment
+   as the preloader's "// Initializing" label above. */
+
+section > h2::before {
+  content: "// ";
+  color: var(--accent);
+}
+
 .leading-normal {
   line-height: 1.5;
 }
@@ -730,9 +793,19 @@ section > h2 {
 }
 
 #about strong {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  font-weight: 500;
+
   color: var(--heading);
 
-  font-weight: 600;
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+
+  padding: 1px 7px;
+
+  border-radius: 4px;
 }
 
 #about a {
@@ -853,6 +926,10 @@ section > h2 {
 }
 
 .job h3 .company {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
   color: var(--muted);
 }
 
@@ -914,6 +991,94 @@ section > h2 {
   color: var(--heading);
 
   border-color: var(--border);
+}
+
+
+/* ---------------------------------------------------------
+   STATUS DOT
+   Small pulsing "online" indicator next to the current role.
+   A solid dot plus an expanding, fading ring behind it — the
+   classic live-status treatment, kept subtle and small.
+--------------------------------------------------------- */
+
+.status-dot {
+  position: relative;
+
+  display: inline-block;
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: var(--status-online);
+
+  flex-shrink: 0;
+}
+
+.status-dot::before {
+  content: "";
+
+  position: absolute;
+
+  inset: -4px;
+
+  border-radius: 50%;
+
+  background: var(--status-online-glow);
+
+  animation: status-pulse 2s var(--ease) infinite;
+}
+
+@keyframes status-pulse {
+
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+
+  70% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .status-dot::before {
+    animation: none;
+    opacity: 0.5;
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   SCRAMBLE / GLITCH HOVER
+   Applies to job titles and project titles. JS swaps the
+   target span's text with random characters on hover, then
+   resolves back to the real text — this just makes sure the
+   width doesn't jump around mid-scramble and gives the
+   resolved state a tiny color flick for feedback.
+--------------------------------------------------------- */
+
+.scramble-target {
+  display: inline-block;
+
+  font-variant-numeric: tabular-nums;
+}
+
+.job:hover .scramble-target,
+.project:hover .scramble-target {
+  color: var(--accent);
+
+  transition: color 0.4s var(--ease) 0.15s;
 }
 
 
@@ -1066,6 +1231,66 @@ section > h2 {
   width: 100%;
 
   height: auto;
+}
+
+
+/* ---------------------------------------------------------
+   SVG LINE-DRAW
+   Stroked lines/shapes in the thumbnail SVGs start fully
+   "undrawn" (dash offset = full length) and animate to fully
+   drawn once the thumbnail scrolls into view. JS measures
+   each path's real length and sets the custom properties
+   below; this file only defines the transition + the
+   in-view trigger class.
+--------------------------------------------------------- */
+
+.draw-path {
+  stroke-dasharray: var(--draw-len, 0);
+  stroke-dashoffset: var(--draw-len, 0);
+
+  transition: stroke-dashoffset 1.1s var(--ease);
+}
+
+.thumb.in-view .draw-path {
+  stroke-dashoffset: 0;
+}
+
+.thumb.in-view .draw-path--accent {
+  transition-delay: 0.25s;
+}
+
+/* The little accent dot at the end of the line chart —
+   pops in right as the accent line finishes drawing. */
+
+.draw-path-dot {
+  opacity: 0;
+  transform-origin: center;
+  transform-box: fill-box;
+  transform: scale(0.3);
+
+  transition:
+    opacity 0.3s var(--ease) 1.2s,
+    transform 0.3s var(--ease) 1.2s;
+}
+
+.thumb.in-view .draw-path-dot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .draw-path {
+    stroke-dashoffset: 0 !important;
+    transition: none;
+  }
+
+  .draw-path-dot {
+    opacity: 1;
+    transform: scale(1);
+    transition: none;
+  }
+
 }
 
 .project h3 {
@@ -1486,6 +1711,10 @@ footer a:hover {
     opacity: 1;
   }
 
+  .type-cursor {
+    animation: none;
+  }
+
   * {
     transition: none !important;
   }
@@ -1626,12 +1855,27 @@ main:focus-visible {
 
 /* =========================================================
    ABOUT PHOTO
-   Fixed pixel width (not a fluid %) so the browser isn't
-   forced to resample the halftone pattern at a different
-   scale on every zoom level / viewport resize. Halftone/
-   dither art is high-frequency detail — fluid sizing is
-   what causes the "shifting pixels" look between 67% and
-   100% zoom.
+   The source PNG is a 1-bit dither/halftone pattern. That
+   kind of image is pure high-frequency detail — every pixel
+   matters. The moment the browser has to scale it by a
+   non-integer factor (which is exactly what happens with a
+   fluid width like % or vw as the viewport resizes), it
+   interpolates between pixels to smooth the result. That
+   blends neighbouring dots together, which is why the dot
+   pattern visibly "shifts" / changes density as the window
+   is resized.
+
+   Fix has two parts, both required:
+     1) The display width is a FIXED px value that only
+        changes at discrete breakpoints (never a fluid %),
+        so within a breakpoint the browser renders the image
+        at one constant size instead of continuously
+        resampling it on every resize/zoom tick.
+     2) image-rendering: pixelated forces nearest-neighbor
+        scaling instead of smoothing, so even where scaling
+        does happen (e.g. between breakpoints, or on a
+        display's own pixel grid) dot edges stay crisp
+        black/white instead of blurring into grey.
 ========================================================= */
 
 .about-photo {
@@ -1640,30 +1884,29 @@ main:focus-visible {
   border-radius: 12px;
   overflow: hidden;
 
-  /* Fixed intrinsic size instead of a % of the column.
-     Adjust this to match your source image's real
-     display size (ideally export the halftone PNG at
-     this resolution, or 2x for retina). */
-  /* width: 288px; */
-  max-width: 75%;
+  /* Fixed intrinsic size, not a % of the column. This is
+     the display's native-ish size on desktop; it only
+     changes at the breakpoints below. */
+  /* width: 280px; */
+  max-width: 65%;
 }
 
 .about-photo img {
   display: block;
 
-  width: 100%;
+  width: 65%;
   height: auto;
 
   object-fit: contain;
   object-position: center;
 
-  filter: grayscale(15%);
+  /* filter: grayscale(15%); */
 
   /* Keeps dot edges crisp instead of blurring/moiré-ing
-     at non-integer scale factors. Try "crisp-edges" too —
-     browser support and look vary, test both against your
-     actual dither density. */
-  /* image-rendering: pixelated; */
+     at non-integer scale factors. */
+  /* image-rendering: pixelated;
+  image-rendering: crisp-edges;  */
+  /* Firefox fallback */
 
   transition: filter 0.3s var(--ease);
 }
@@ -1672,12 +1915,20 @@ main:focus-visible {
   filter: grayscale(0%);
 }
 
+@media (max-width: 900px) {
+
+  .about-photo {
+    width: 240px;
+    max-width: 60%;
+  }
+
+}
+
 @media (max-width: 700px) {
 
   .about-photo {
-    width: 220px;
-    max-width: 60%;
-    height: auto;
+    width: 200px;
+    max-width: 55%;
   }
 
 }

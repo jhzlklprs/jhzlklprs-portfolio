@@ -64,7 +64,7 @@
     Used below for the canonical link and Open Graph / Twitter Card image
     and URL, which require absolute URLs to render correctly when shared.
   -->
-  <link rel="canonical" href="https://your-domain.com/">
+  <link rel="canonical" href="https://jahzeelkiel.vercel.app/">
 
 
   <!-- =========================================================
@@ -79,16 +79,16 @@
   <meta
     property="og:description"
     content="Selected work, experience, and contact — .NET, C#, and SQL Server.">
-  <meta property="og:url" content="https://your-domain.com/">
+  <meta property="og:url" content="https://jahzeelkiel.vercel.app/">
   <!-- UPDATE ME: a 1200x630 social preview image, absolute URL -->
-  <meta property="og:image" content="https://your-domain.com/assets/images/og-image.png">
+  <meta property="og:image" content="https://jahzeelkiel.vercel.app/assets/images/og-image.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Jahzeel Kiel Peras — .NET Developer">
   <meta
     name="twitter:description"
     content="Selected work, experience, and contact — .NET, C#, and SQL Server.">
-  <meta name="twitter:image" content="https://your-domain.com/assets/images/og-image.png">
+  <meta name="twitter:image" content="https://jahzeelkiel.vercel.app/assets/images/og-image.png">
 
 
   <!-- Favicon -->
@@ -124,7 +124,7 @@
     "@type": "Person",
     "name": "Jahzeel Kiel Peras",
     "jobTitle": ".NET Developer",
-    "url": "https://your-domain.com/",
+    "url": "https://jahzeelkiel.vercel.app/",
     "email": "mailto:jhzlklprs@gmail.com",
     "sameAs": [
       "https://github.com/jhzlklprs",
@@ -220,8 +220,18 @@
           class="identity reveal"
           style="animation-delay:0.05s">
 
+          <!-- Terminal-style prompt line above the name.
+               Purely decorative (aria-hidden) — the real
+               name is still in the <h1> for screen readers
+               and SEO; the typing effect just animates it. -->
+          <!-- <p class="terminal-prompt" aria-hidden="true">
+            <span class="prompt-sign">$</span> whoami
+          </p> -->
+
           <h1>
-            Jahzeel Kiel Peras
+            <span id="typedName">Jahzeel Kiel Peras</span><span
+              class="type-cursor"
+              aria-hidden="true">_</span>
           </h1>
 
           <p class="role">
@@ -549,13 +559,6 @@
         class="reveal"
         style="animation-delay:0.2s">
 
-        <!-- <div class="about-photo">
-          <img
-            src="assets/images/profile.png"
-            alt="Jahzeel Kiel Peras"
-            loading="lazy">
-        </div> -->
-
         <p>
           I'm a software developer who enjoys turning complex business
           requirements into reliable, maintainable applications. I like
@@ -596,7 +599,7 @@
         </h2>
 
 
-        <!-- RPI -->
+        <!-- RPI (current role) -->
 
         <div class="job">
 
@@ -606,10 +609,15 @@
 
           <div>
 
-            <h3>
-              RPI
+            <h3 class="scramble">
+              <span
+                class="scramble-target"
+                data-text="RPI">RPI</span>
               ·
               <span class="company">
+                <span
+                  class="status-dot"
+                  aria-hidden="true"></span>
                 System Programmer I
               </span>
             </h3>
@@ -645,8 +653,10 @@
 
           <div>
 
-            <h3>
-              Private Contractor
+            <h3 class="scramble">
+              <span
+                class="scramble-target"
+                data-text="Private Contractor">Private Contractor</span>
               ·
               <span class="company">
                 Front-end Web Developer
@@ -684,8 +694,10 @@
 
           <div>
 
-            <h3>
-              Guavatek
+            <h3 class="scramble">
+              <span
+                class="scramble-target"
+                data-text="Guavatek">Guavatek</span>
               ·
               <span class="company">
                 Junior Web Developer
@@ -723,8 +735,10 @@
 
           <div>
 
-            <h3>
-              Rodriguez Property Ventures &amp; Dev't Corp.
+            <h3 class="scramble">
+              <span
+                class="scramble-target"
+                data-text="Rodriguez Property Ventures &amp; Dev't Corp.">Rodriguez Property Ventures &amp; Dev't Corp.</span>
               ·
               <span class="company">
                 IT &amp; Web Development Support
@@ -762,8 +776,10 @@
 
           <div>
 
-            <h3>
-              Quadfinity Solution
+            <h3 class="scramble">
+              <span
+                class="scramble-target"
+                data-text="Quadfinity Solution">Quadfinity Solution</span>
               ·
               <span class="company">
                 Web Developer Intern
@@ -866,6 +882,7 @@
                 fill="var(--border)" />
 
               <line
+                class="draw-path"
                 x1="16"
                 y1="102"
                 x2="184"
@@ -873,6 +890,7 @@
                 stroke="var(--border)" />
 
               <line
+                class="draw-path"
                 x1="16"
                 y1="26"
                 x2="16"
@@ -880,6 +898,7 @@
                 stroke="var(--border)" />
 
               <polyline
+                class="draw-path draw-path--accent"
                 points="16,84 40,70 64,80 88,50 112,64 136,34 160,48 184,22"
                 fill="none"
                 stroke="var(--accent)"
@@ -888,6 +907,7 @@
                 stroke-linejoin="round" />
 
               <circle
+                class="draw-path-dot"
                 cx="184"
                 cy="22"
                 r="3"
@@ -900,8 +920,10 @@
 
           <div>
 
-            <h3>
-              Ledger
+            <h3 class="scramble">
+              <span
+                class="scramble-target"
+                data-text="Ledger">Ledger</span>
             </h3>
 
             <p>
@@ -960,6 +982,7 @@
                 fill="var(--surface)" />
 
               <rect
+                class="draw-path"
                 x="16"
                 y="26"
                 width="88"
@@ -985,6 +1008,7 @@
                 stroke-opacity="0.55" />
 
               <circle
+                class="draw-path draw-path--accent"
                 cx="150"
                 cy="60"
                 r="22"
@@ -999,8 +1023,10 @@
 
           <div>
 
-            <h3>
-              Preventive Maintenance System
+            <h3 class="scramble">
+              <span
+                class="scramble-target"
+                data-text="Preventive Maintenance System">Preventive Maintenance System</span>
             </h3>
 
             <p>
@@ -1077,6 +1103,7 @@
                 fill-opacity="0.35" />
 
               <rect
+                class="draw-path"
                 x="104"
                 y="26"
                 width="38"
@@ -1086,6 +1113,7 @@
                 stroke="var(--border)" />
 
               <rect
+                class="draw-path"
                 x="16"
                 y="60"
                 width="168"
@@ -1101,8 +1129,10 @@
 
           <div>
 
-            <h3>
-              Portfolio Dashboard
+            <h3 class="scramble">
+              <span
+                class="scramble-target"
+                data-text="Portfolio Dashboard">Portfolio Dashboard</span>
             </h3>
 
             <p>
