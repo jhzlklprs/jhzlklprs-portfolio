@@ -493,3 +493,222 @@
   setTimeout(finish, 4000);
 
 })();
+
+
+/* =========================================================
+   TERMINAL BOOT ANIMATION
+   Types out the fake boot sequence in #terminalBoot line by
+   line, then leaves a blinking cursor on the final line and
+   loops. Respects prefers-reduced-motion by skipping the
+   typing and just showing the finished state.
+========================================================= */
+
+(function () {
+
+  var terminal =
+    document.getElementById(
+      'terminalBoot'
+    );
+
+  if (!terminal) {
+    return;
+  }
+
+  var lineEls =
+    Array.prototype.slice.call(
+      terminal.querySelectorAll(
+        '.terminal-boot-line'
+      )
+    );
+
+  if (!lineEls.length) {
+    return;
+  }
+
+  var reduceMotion =
+    window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+  var TYPE_SPEED_MS = 18;
+  var LINE_DELAY_MS = 220;
+  var RESTART_DELAY_MS = 3200;
+
+
+  /* -------------------------------------------------------
+     Reduced Motion — show the finished state, no typing,
+     no looping, no blinking cursor.
+  ------------------------------------------------------- */
+
+  if (reduceMotion) {
+
+    lineEls.forEach(
+      function (lineEl) {
+
+        var text =
+          lineEl.getAttribute(
+            'data-text'
+          ) || '';
+
+        var cursorEl =
+          lineEl.querySelector(
+            '.terminal-boot-cursor'
+          );
+
+        lineEl.textContent = text;
+
+        if (cursorEl) {
+          lineEl.appendChild(cursorEl);
+        }
+
+      }
+    );
+
+    return;
+
+  }
+
+
+  /* -------------------------------------------------------
+     Type A Single Line
+  ------------------------------------------------------- */
+
+  function typeLine(lineEl, onDone) {
+
+    var text =
+      lineEl.getAttribute(
+        'data-text'
+      ) || '';
+
+    var cursorEl =
+      lineEl.querySelector(
+        '.terminal-boot-cursor'
+      );
+
+    var i = 0;
+
+    lineEl.textContent = '';
+
+    function step() {
+
+      i = i + 1;
+
+      lineEl.textContent =
+        text.slice(0, i);
+
+      if (cursorEl) {
+        lineEl.appendChild(cursorEl);
+      }
+
+      if (i < text.length) {
+
+        setTimeout(step, TYPE_SPEED_MS);
+
+      } else if (onDone) {
+
+        onDone();
+
+      }
+
+    }
+
+    step();
+
+  }
+
+
+  /* -------------------------------------------------------
+     Reset All Lines Back To Empty
+  ------------------------------------------------------- */
+
+  function resetLines() {
+
+    lineEls.forEach(
+      function (lineEl) {
+
+        var cursorEl =
+          lineEl.querySelector(
+            '.terminal-boot-cursor'
+          );
+
+        lineEl.textContent = '';
+
+        if (cursorEl) {
+
+          cursorEl.classList.remove(
+            'is-visible'
+          );
+
+          lineEl.appendChild(
+            cursorEl
+          );
+
+        }
+
+      }
+    );
+
+  }
+
+
+  /* -------------------------------------------------------
+     Run The Full Boot Sequence, Then Loop
+  ------------------------------------------------------- */
+
+  function runSequence() {
+
+    resetLines();
+
+    var index = 0;
+
+    function next() {
+
+      if (index >= lineEls.length) {
+
+        var finalCursor =
+          terminal.querySelector(
+            '.terminal-boot-line--final .terminal-boot-cursor'
+          );
+
+        if (finalCursor) {
+
+          finalCursor.classList.add(
+            'is-visible'
+          );
+
+        }
+
+        setTimeout(
+          runSequence,
+          RESTART_DELAY_MS
+        );
+
+        return;
+
+      }
+
+      var lineEl = lineEls[index];
+
+      typeLine(
+        lineEl,
+        function () {
+
+          index = index + 1;
+
+          setTimeout(
+            next,
+            LINE_DELAY_MS
+          );
+
+        }
+      );
+
+    }
+
+    next();
+
+  }
+
+  runSequence();
+
+})();

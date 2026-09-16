@@ -840,6 +840,162 @@ section > h2::before {
 
 
 /* =========================================================
+   TERMINAL BOOT ANIMATION
+   Decorative boot-sequence card shown at the top of About.
+   Built entirely from the existing theme variables, so it
+   tracks light / dark / system automatically — no colors of
+   its own. The typing + cursor behaviour lives in main.js;
+   this block is layout, chrome, and the reduced-motion
+   fallback (final line shown immediately, no typing).
+========================================================= */
+
+.terminal-boot {
+  position: relative;
+
+  width: 100%;
+  max-width: 26rem;
+
+  margin: 0 0 28px;
+
+  border-radius: 10px;
+
+  border: 1px solid var(--border);
+
+  background: var(--surface);
+
+  padding: 16px;
+
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.6;
+
+  box-shadow: 0 14px 30px var(--shadow);
+
+  opacity: 0;
+
+  animation: fadeIn 0.5s var(--ease) 0.1s forwards;
+}
+
+.terminal-boot-bar {
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  margin-bottom: 12px;
+}
+
+.terminal-boot-dot {
+  width: 9px;
+  height: 9px;
+
+  border-radius: 50%;
+
+  background: var(--border);
+}
+
+.terminal-boot-dot--accent {
+  position: relative;
+
+  background: var(--accent);
+
+  opacity: 0.75;
+
+  animation: terminal-boot-dot-pulse 2.4s var(--ease) infinite;
+}
+
+@keyframes terminal-boot-dot-pulse {
+
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+
+  50% {
+    opacity: 0.25;
+  }
+
+}
+
+.terminal-boot-label {
+  margin-left: 6px;
+
+  font-size: 0.62rem;
+
+  font-weight: 600;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.16em;
+
+  color: var(--muted);
+}
+
+.terminal-boot-lines {
+  overflow: hidden;
+}
+
+.terminal-boot-line {
+  height: 1.5em;
+
+  overflow: hidden;
+
+  white-space: pre;
+
+  line-height: 1.5em;
+
+  color: var(--muted);
+}
+
+.terminal-boot-line--boot {
+  color: var(--heading);
+}
+
+.terminal-boot-line--final {
+  color: var(--accent);
+}
+
+.terminal-boot-cursor {
+  display: none;
+
+  margin-left: 1px;
+
+  height: 0.8em;
+  width: 0.55ch;
+
+  background: var(--accent);
+
+  vertical-align: middle;
+
+  animation: blink 1s step-end infinite;
+}
+
+.terminal-boot-cursor.is-visible {
+  display: inline-block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .terminal-boot {
+    opacity: 1;
+
+    animation: none;
+  }
+
+  .terminal-boot-dot--accent {
+    animation: none;
+
+    opacity: 0.75;
+  }
+
+  .terminal-boot-cursor {
+    animation: none;
+  }
+
+}
+
+
+/* =========================================================
    EXPERIENCE
 ========================================================= */
 
@@ -1931,4 +2087,61 @@ main:focus-visible {
     max-width: 55%;
   }
 
+}
+
+.tech-stack {
+  margin-top: 3rem;
+}
+
+.tech-stack h3 {
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.tech-stack-intro {
+  max-width: 620px;
+  margin-bottom: 2rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+
+.tech-category {
+  margin-bottom: 1.75rem;
+}
+
+.tech-category-label {
+  display: block;
+  margin-bottom: 0.65rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.tech-list span {
+  padding: 0.4rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  color: var(--text);
+  background: var(--surface);
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.tech-list span:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-1px);
 }

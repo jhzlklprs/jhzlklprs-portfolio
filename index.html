@@ -559,7 +559,68 @@
         class="reveal"
         style="animation-delay:0.2s">
 
-        <p>
+
+        <!-- =====================================================
+             TERMINAL BOOT ANIMATION
+             Decorative — types out a fake boot sequence, then
+             sits on a blinking "all systems online" line. Uses
+             the same CSS variables as the rest of the page, so
+             it follows the light/dark/system theme automatically.
+        ===================================================== -->
+
+        <div
+          class="terminal-boot"
+          id="terminalBoot"
+          aria-hidden="true">
+
+          <div class="terminal-boot-bar">
+
+            <span class="terminal-boot-dot"></span>
+            <span class="terminal-boot-dot"></span>
+            <span class="terminal-boot-dot terminal-boot-dot--accent"></span>
+
+            <span class="terminal-boot-label">
+              session
+            </span>
+
+          </div>
+
+          <div class="terminal-boot-lines" id="terminalBootLines">
+
+            <div
+              class="terminal-boot-line terminal-boot-line--boot"
+              data-text="$ boot --profile kiel"></div>
+
+            <div
+              class="terminal-boot-line"
+              data-text="  interface ............. ok"></div>
+
+            <div
+              class="terminal-boot-line"
+              data-text="  application ........... ok"></div>
+
+            <div
+              class="terminal-boot-line"
+              data-text="  systems ............... ok"></div>
+
+            <div
+              class="terminal-boot-line"
+              data-text="  infrastructure ........ ok"></div>
+
+            <div
+              class="terminal-boot-line terminal-boot-line--final"
+              data-text="→ all systems online">
+              <span
+                class="terminal-boot-cursor"
+                id="terminalBootCursor"></span>
+            </div>
+
+          </div>
+
+        </div>
+
+
+                <p>
           I'm a software developer who enjoys turning complex business
           requirements into reliable, maintainable applications. I like
           working on the parts that often go unnoticed — debugging tricky
@@ -570,16 +631,130 @@
         <p>
           My main focus is <strong>.NET</strong>, <strong>C#</strong>, and
           <strong>SQL Server</strong>, with experience in
-          <strong>ASP.NET</strong>, web development,
-          stored procedures,
+          <strong>ASP.NET</strong>, web development, stored procedures,
           and legacy application modernization.
         </p>
+
+        <p>
+  I enjoy understanding how software works beyond the code itself —
+  from the database and application logic to the business processes
+  and users behind the system. I believe good software should not only
+  work, but also be practical, understandable, and easy to maintain.
+</p>
 
         <p>
           Outside of work, I enjoy learning new technologies, building
           projects from scratch, and continuously improving how I think
           and solve problems as a developer.
         </p>
+
+
+        <!-- =====================================================
+             TECH STACK
+        ===================================================== -->
+
+        <!-- <div class="tech-stack">
+
+          <h3>Tech Stack</h3>
+
+          <p class="tech-stack-intro">
+            The tools and technologies I work with across application
+            development, databases, web development, and infrastructure.
+          </p>
+
+
+          <div class="tech-category">
+
+            <span class="tech-category-label">
+              BACKEND &amp; FRAMEWORKS
+            </span>
+
+            <div class="tech-list">
+              <span>C#</span>
+              <span>.NET</span>
+              <span>ASP.NET</span>
+              <span>VB.NET</span>
+            </div>
+
+          </div>
+
+
+          <div class="tech-category">
+
+            <span class="tech-category-label">
+              DATABASE
+            </span>
+
+            <div class="tech-list">
+              <span>SQL Server</span>
+              <span>Stored Procedures</span>
+              <span>Database Maintenance</span>
+            </div>
+
+          </div>
+
+
+          <div class="tech-category">
+
+            <span class="tech-category-label">
+              FRONTEND
+            </span>
+
+            <div class="tech-list">
+              <span>JavaScript</span>
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>Bootstrap</span>
+              <span>AngularJS</span>
+            </div>
+
+          </div>
+
+
+          <div class="tech-category">
+
+            <span class="tech-category-label">
+              REPORTING
+            </span>
+
+            <div class="tech-list">
+              <span>RDLC</span>
+            </div>
+
+          </div>
+
+
+          <div class="tech-category">
+
+            <span class="tech-category-label">
+              WEB &amp; INFRASTRUCTURE
+            </span>
+
+            <div class="tech-list">
+              <span>IIS</span>
+              <span>cPanel</span>
+              <span>Namecheap</span>
+              <span>SSL</span>
+            </div>
+
+          </div>
+
+
+          <div class="tech-category">
+
+            <span class="tech-category-label">
+              DEVELOPER TOOLS
+            </span>
+
+            <div class="tech-list">
+              <span>Git</span>
+              <span>GitHub</span>
+              <span>VS Code</span>
+            </div>
+
+          </div>
+
+        </div> -->
 
       </section>
 
