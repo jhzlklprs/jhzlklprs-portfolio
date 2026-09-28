@@ -1,1419 +1,557 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-  <meta charset="UTF-8">
+<title>Jahzeel Kiel · .NET Developer</title>
 
-  <meta name="color-scheme" content="dark light">
-  <meta name="theme-color" content="#0a0b0f">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- =========================================================
-       THEME — FLASH PREVENTION
-       Runs synchronously, before the stylesheet paints, so the
-       correct theme (saved preference, or the OS preference by
-       default) is set on <html> from the very first frame —
-       no flash from dark to light (or back) after JS loads.
-  ========================================================= -->
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&family=Hanken+Grotesk:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <script>
-    (function () {
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-      var saved = localStorage.getItem('portfolio-theme');
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/search.css">
+<link rel="stylesheet" href="css/hero-buttons.css">
 
-      var theme =
-        (saved === 'light' || saved === 'dark' || saved === 'system')
-          ? saved
-          : 'system';
-
-      document.documentElement.setAttribute('data-theme', theme);
-
-      var resolved = theme;
-
-      if (theme === 'system') {
-        resolved =
-          window.matchMedia('(prefers-color-scheme: dark)').matches
-            ? 'dark'
-            : 'light';
-      }
-
-      var meta = document.querySelector('meta[name="theme-color"]');
-
-      if (meta) {
-        meta.setAttribute(
-          'content',
-          resolved === 'light' ? '#f7f7f7' : '#0a0b0f'
-        );
-      }
-
-    })();
-  </script>
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0">
-
-  <title>Jahzeel Kiel Peras — .NET Developer</title>
-
-  <meta
-    name="description"
-    content="Jahzeel Kiel Peras, .NET Developer — selected work, experience, and contact.">
-
-  <!--
-    UPDATE ME: replace with your real deployed domain before publishing.
-    Used below for the canonical link and Open Graph / Twitter Card image
-    and URL, which require absolute URLs to render correctly when shared.
-  -->
-  <link rel="canonical" href="https://jahzeelkiel.vercel.app/">
-
-
-  <!-- =========================================================
-       OPEN GRAPH / TWITTER CARD
-       Controls how the page looks when shared on LinkedIn,
-       Twitter/X, Slack, Discord, etc.
-  ========================================================= -->
-
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Jahzeel Kiel Peras">
-  <meta property="og:title" content="Jahzeel Kiel Peras — .NET Developer">
-  <meta
-    property="og:description"
-    content="Selected work, experience, and contact — .NET, C#, and SQL Server.">
-  <meta property="og:url" content="https://jahzeelkiel.vercel.app/">
-  <!-- UPDATE ME: a 1200x630 social preview image, absolute URL -->
-  <meta property="og:image" content="https://jahzeelkiel.vercel.app/assets/images/og-image.png">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Jahzeel Kiel Peras — .NET Developer">
-  <meta
-    name="twitter:description"
-    content="Selected work, experience, and contact — .NET, C#, and SQL Server.">
-  <meta name="twitter:image" content="https://jahzeelkiel.vercel.app/assets/images/og-image.png">
-
-
-  <!-- Favicon -->
-  <link
-    rel="icon"
-    type="image/png"
-    href="assets/images/favicon.png">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-
-  <link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
-    rel="stylesheet">
-
-  <link
-    rel="stylesheet"
-    href="assets/css/style.css">
-
-
-  <!-- =========================================================
-       STRUCTURED DATA
-       Helps search engines understand who this site is about.
-  ========================================================= -->
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Jahzeel Kiel Peras",
-    "jobTitle": ".NET Developer",
-    "url": "https://jahzeelkiel.vercel.app/",
-    "email": "mailto:jhzlklprs@gmail.com",
-    "sameAs": [
-      "https://github.com/jhzlklprs",
-      "https://linkedin.com/jhzlklprs",
-      "https://codepen.io/jhzlklprs"
-    ]
+<style>
+  /* Hotel Rosita project thumbnail: cropped to the card ratio, fills the frame */
+  .hotel-thumbnail-body {
+    padding: 0 !important;
+    overflow: hidden;
   }
-  </script>
 
+  .hotel-thumbnail {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+</style>
 </head>
-
-
 
 <body>
 
+<!-- ================= HEADER ================= -->
 
-  <!-- =========================================================
-       SKIP TO CONTENT
-       Hidden until focused — lets keyboard users bypass the
-       sidebar (identity, nav, socials, theme toggle) and jump
-       straight to the page content.
-  ========================================================= -->
+<header>
+  <div class="wrap navrow">
 
-  <a href="#main-content" class="skip-link">
-    Skip to content
-  </a>
+    <a class="logo" href="index.html">jahzeel<span>.kiel</span></a>
+
+    <nav class="links">
+      <a href="projects.html"><span class="idx">01</span>Projects</a>
+      <a href="work.html"><span class="idx">02</span>Work</a>
+      <a href="about.html"><span class="idx">03</span>About</a>
+    </nav>
+
+    <div class="navactions">
+      <button class="site-search-trigger" type="button" id="siteSearchBtn" aria-label="Search site">
+        <span class="search-icon">⌕</span>
+        <span>Search</span>
+        <kbd>Ctrl K</kbd>
+      </button>
+
+      <!-- NEW: Résumé link in header -->
+      <a class="nav-resume" href="assets/docs/resume.pdf" target="_blank" rel="noopener">Résumé</a>
+
+      <a class="cta-btn" href="contact.html">Get in touch</a>
+
+      <button class="burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false">
+        <svg id="burgerIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobilemenu" id="mobileMenu">
+    <a href="projects.html"><span class="idx">01</span>Projects</a>
+    <a href="work.html"><span class="idx">02</span>Work</a>
+    <a href="about.html"><span class="idx">03</span>About</a>
+
+    <button type="button" class="mobile-search-trigger" id="mobileSearchBtn">
+      <span class="idx">04</span>Search
+    </button>
+
+    <!-- NEW: Résumé link in mobile menu -->
+    <a href="assets/docs/resume.pdf" target="_blank" rel="noopener"><span class="idx">05</span>Résumé</a>
+
+    <a class="btn primary cta-btn" href="contact.html">Get in touch</a>
+  </div>
+</header>
 
 
-  <!-- =========================================================
-       PRELOADER
-  ========================================================= -->
+<main id="top">
 
-  <div
-    id="preloader"
-    role="status"
-    aria-live="polite"
-    aria-label="Loading">
+<!-- ================= HERO ================= -->
 
-    <div class="preloader-inner">
+<section class="hero" style="border-top:none;">
 
-      <div class="preloader-label">
-        Initializing
+  <div class="wrap herogrid">
+
+    <div class="herotext">
+
+      <div class="pill-row">
+        <span class="pill live">Open to software roles</span>
       </div>
 
-      <div class="preloader-bar">
-        <div class="preloader-bar-fill"></div>
+      <h1>.NET developer. Building for the business.</h1>
+
+      <p class="lead">
+        I build desktop and web applications with VB.NET, ASP.NET, and SQL Server
+        — internal systems that support day-to-day business operations.
+      </p>
+
+      <!-- NEW: visible hero buttons (replaces the hidden btnrow) -->
+      <div class="btnrow hero-actions">
+
+        <a class="btn work-btn" href="projects.html">
+          See the work
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </a>
+
+        <a class="resume-link" href="assets/docs/resume.pdf" target="_blank" rel="noopener">
+          Résumé <span aria-hidden="true">&#8599;</span>
+        </a>
+
       </div>
 
-      <div class="preloader-percent">
-        00%
+      <div class="bootcard" id="bootCard">
+        <div class="bootbar">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot on"></span>
+          <span class="label">session</span>
+        </div>
+
+        <div class="bootlines" id="bootLines">
+          <div class="bootline boot" data-text="$ boot --profile kiel"></div>
+          <div class="bootline" data-text="  interface ............. ok"></div>
+          <div class="bootline" data-text="  application ........... ok"></div>
+          <div class="bootline" data-text="  systems ............... ok"></div>
+          <div class="bootline" data-text="  infrastructure ........ ok"></div>
+          <div class="bootline final" data-text="&rarr; all layers online">
+            <span class="bootcursor" id="bootCursor"></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- ================= HERO VISUAL ================= -->
+
+    <div class="heroimg">
+
+      <div class="hero-visual">
+
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+
+        <svg class="flow-lines" viewBox="0 0 560 420" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="flowGradient" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#ff7a45"></stop>
+              <stop offset=".55" stop-color="#f2c9a6"></stop>
+              <stop offset="1" stop-color="#fff2e6"></stop>
+            </linearGradient>
+
+            <filter id="flowGlow" x="-40%" y="-100%" width="180%" height="300%">
+              <feGaussianBlur stdDeviation="2.8" result="blur"></feGaussianBlur>
+              <feMerge>
+                <feMergeNode in="blur"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+              </feMerge>
+            </filter>
+          </defs>
+
+          <path class="flow-track" d="M10 100 C125 42 157 152 267 112 S426 72 548 128"></path>
+          <path class="flow-track" d="M12 214 C102 166 190 261 282 213 S432 167 548 220"></path>
+          <path class="flow-track" d="M15 332 C128 268 173 374 290 328 S431 287 545 344"></path>
+
+          <path class="flow-trail flow-trail-one" d="M10 100 C125 42 157 152 267 112 S426 72 548 128"></path>
+          <path class="flow-trail flow-trail-two" d="M12 214 C102 166 190 261 282 213 S432 167 548 220"></path>
+          <path class="flow-trail flow-trail-three" d="M15 332 C128 268 173 374 290 328 S431 287 545 344"></path>
+
+          <circle class="flow-node" cx="10" cy="100" r="3"></circle>
+          <circle class="flow-node" cx="548" cy="128" r="3"></circle>
+          <circle class="flow-node" cx="12" cy="214" r="3"></circle>
+          <circle class="flow-node" cx="548" cy="220" r="3"></circle>
+          <circle class="flow-node" cx="15" cy="332" r="3"></circle>
+          <circle class="flow-node" cx="545" cy="344" r="3"></circle>
+        </svg>
+
+
+        <div class="core-card">
+          <div class="core-top">
+            <span class="live-pulse"></span>
+            SYSTEMS ONLINE
+            <span class="core-dots">&middot;&middot;&middot;</span>
+          </div>
+
+          <div class="core-glyph">
+            <span class="brace-l">{</span>
+            <span class="brace-r">}</span>
+          </div>
+
+          <div class="core-caption">
+            <span>FOCUS</span>
+            <strong>.NET developer<br>building for the business.</strong>
+          </div>
+
+          <div class="core-footer">
+            <span>ASP.NET</span>
+            <span>●</span>
+            <span>SQL SERVER</span>
+          </div>
+        </div>
+
+
+        <span class="float-tag tag-api">Web Development <b>↗</b></span>
+        <span class="float-tag tag-cloud">Business System <b>✳</b></span>
+        <span class="float-tag tag-dotnet">.NET <b>✦</b></span>
+
+        <span class="visual-index">01 / 04</span>
+
       </div>
 
     </div>
 
   </div>
 
-
-  <!-- =========================================================
-       BACKGROUND SPOTLIGHT
-       TEMPORARILY DISABLED
-  ========================================================= -->
-
-  <!--
-  <div
-    class="bg-spotlight"
-    id="bgSpotlight"
-    aria-hidden="true">
-  </div>
-  -->
+</section>
 
 
-  <!-- =========================================================
-       MAIN WRAPPER
-  ========================================================= -->
+<!-- ================= PROJECTS ================= -->
+
+<section id="work">
 
   <div class="wrap">
 
-
-    <!-- =========================================================
-         SIDEBAR
-    ========================================================= -->
-
-    <aside>
-
+    <div class="sechead">
       <div>
-
-
-        <!-- =====================================================
-             IDENTITY
-        ===================================================== -->
-
-        <div
-          class="identity reveal"
-          style="animation-delay:0.05s">
-
-          <!-- Terminal-style prompt line above the name.
-               Purely decorative (aria-hidden) — the real
-               name is still in the <h1> for screen readers
-               and SEO; the typing effect just animates it. -->
-          <!-- <p class="terminal-prompt" aria-hidden="true">
-            <span class="prompt-sign">$</span> whoami
-          </p> -->
-
-          <h1>
-            <span id="typedName">Jahzeel Kiel Peras</span><span
-              class="type-cursor"
-              aria-hidden="true">_</span>
-          </h1>
-
-          <p class="role">
-            .NET Developer
-          </p>
-
-          <p>
-            I build reliable applications with .NET, C#, and SQL Server.
-          </p>
-
-        </div>
-
-
-        <!-- =====================================================
-             NAVIGATION
-        ===================================================== -->
-
-        <nav
-          class="reveal"
-          style="animation-delay:0.15s"
-          aria-label="Section navigation">
-
-          <ul>
-
-            <li>
-              <a
-                href="#about"
-                class="active"
-                aria-current="location">
-
-                <span class="dash"></span>
-
-                About
-
-              </a>
-            </li>
-
-
-            <li>
-              <a href="#experience">
-
-                <span class="dash"></span>
-
-                Experience
-
-              </a>
-            </li>
-
-
-            <li>
-              <a href="#work">
-
-                <span class="dash"></span>
-
-                Work
-
-              </a>
-            </li>
-
-
-            <li>
-              <a href="#contact">
-
-                <span class="dash"></span>
-
-                Contact
-
-              </a>
-            </li>
-
-          </ul>
-
-        </nav>
-
+        <div class="eyebrow">Selected work</div>
+        <h2>Things people actually use.</h2>
       </div>
 
-
-      <!-- =====================================================
-           SIDEBAR FOOTER
-      ===================================================== -->
-
-      <div
-        class="sidebar-foot reveal"
-        style="animation-delay:0.25s">
+      <a class="more" href="projects.html">
+        All projects
+        <span aria-hidden="true">&#8599;</span>
+      </a>
+    </div>
 
 
-        <!-- ===================================================
-             SOCIAL LINKS
-        =================================================== -->
+    <div class="workgrid">
 
-        <div
-          class="socials"
-          aria-label="Social links">
+      <!-- ================= 01 PREVENTIVE MAINTENANCE SYSTEM ================= -->
 
+      <a class="card" href="case-study.html?id=preventive-maintenance">
+        <div class="shot">
+          <div class="browsermock">
+            <div class="bm-bar">
+              <span class="bm-dot r"></span>
+              <span class="bm-dot y"></span>
+              <span class="bm-dot g"></span>
+              <span class="bm-url">internal.preventive-maintenance</span>
+            </div>
 
-          <!-- GitHub -->
-
-          <a
-            href="https://github.com/jhzlklprs"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub">
-
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.6">
-
-              <path
-                d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.4 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21" />
-
-            </svg>
-
-          </a>
-
-
-          <!-- LinkedIn -->
-
-          <a
-            href="https://linkedin.com/jhzlklprs"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn">
-
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.6">
-
-              <rect
-                x="3"
-                y="3"
-                width="18"
-                height="18"
-                rx="2" />
-
-              <path
-                d="M7 10v7M7 7v.01M12 17v-4.5a2.5 2.5 0 0 1 5 0V17M12 10v7" />
-
-            </svg>
-
-          </a>
-
-
-          <!-- CodePen -->
-
-          <a
-            href="https://codepen.io/jhzlklprs"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="CodePen">
-
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.6">
-
-              <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2" />
-
-              <line x1="12" y1="22" x2="12" y2="15.5" />
-
-              <polyline points="22 8.5 12 15.5 2 8.5" />
-
-              <polyline points="2 15.5 12 8.5 22 15.5" />
-
-              <line x1="12" y1="2" x2="12" y2="8.5" />
-
-            </svg>
-
-          </a>
-
+            <div class="bm-body hotel-thumbnail-body">
+              <img src="assets/projects/preventive-maintenance/cover.jpg" alt="Preventive Maintenance System dashboard thumbnail" class="hotel-thumbnail" loading="lazy">
+            </div>
+          </div>
         </div>
 
-<!-- =====================================================
-     THEME SELECTOR
-===================================================== -->
+        <div class="body">
+          <div class="toprow">
+            <h3>Preventive Maintenance System</h3>
+            <span class="year">2026</span>
+          </div>
 
-<div
-  class="theme-toggle"
-  aria-label="Theme selector">
+          <p>Tracks preventive maintenance and unit age across every department, replacing paper forms and Excel sheets.</p>
 
-
-
-  <button
-    type="button"
-    class="theme-button active"
-    data-theme-value="system"
-    aria-label="System theme"
-    aria-pressed="true"
-    title="System theme">
-
-    <!-- Monitor Icon -->
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      aria-hidden="true">
-
-      <rect
-        x="3"
-        y="4"
-        width="18"
-        height="14"
-        rx="2"
-        ry="2">
-      </rect>
-
-      <path
-        d="M8 21h8">
-      </path>
-
-      <path
-        d="M12 18v3">
-      </path>
-
-    </svg>
-
-  </button>
-
-  <button
-    type="button"
-    class="theme-button"
-    data-theme-value="light"
-    aria-label="Light theme"
-    aria-pressed="false"
-    title="Light theme">
-
-    <!-- Sun Icon -->
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      aria-hidden="true">
-
-      <circle
-        cx="12"
-        cy="12"
-        r="4">
-      </circle>
-
-      <path
-        d="M12 2v2">
-      </path>
-
-      <path
-        d="M12 20v2">
-      </path>
-
-      <path
-        d="m4.93 4.93 1.41 1.41">
-      </path>
-
-      <path
-        d="m17.66 17.66 1.41 1.41">
-      </path>
-
-      <path
-        d="M2 12h2">
-      </path>
-
-      <path
-        d="M20 12h2">
-      </path>
-
-      <path
-        d="m6.34 17.66-1.41 1.41">
-      </path>
-
-      <path
-        d="m19.07 4.93-1.41 1.41">
-      </path>
-
-    </svg>
-
-  </button>
+          <span class="status">In progress</span>
+        </div>
+      </a>
 
 
-  <button
-    type="button"
-    class="theme-button"
-    data-theme-value="dark"
-    aria-label="Dark theme"
-    aria-pressed="false"
-    title="Dark theme">
+      <!-- ================= 02 JEWELRY PAWNING PURPOSE ================= -->
 
-    <!-- Moon Icon -->
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      aria-hidden="true">
+      <a class="card" href="case-study.html?id=jewelry-pawning-purpose">
+        <div class="shot">
+          <div class="browsermock">
+            <div class="bm-bar">
+              <span class="bm-dot r"></span>
+              <span class="bm-dot y"></span>
+              <span class="bm-dot g"></span>
+              <span class="bm-url">internal.jewelry-analytics</span>
+            </div>
 
-      <path
-        d="M21 12.79A9 9 0 1 1 11.21 3
-        7 7 0 0 0 21 12.79z">
-      </path>
+            <div class="bm-body hotel-thumbnail-body">
+              <img src="assets/projects/jewelry-pawning-purpose/cover.jpg" alt="Jewelry Pawning Purpose dashboard thumbnail" class="hotel-thumbnail" loading="lazy">
+            </div>
+          </div>
+        </div>
 
-    </svg>
+        <div class="body">
+          <div class="toprow">
+            <h3>Jewelry Pawning Purpose</h3>
+            <span class="year">2025</span>
+          </div>
 
-  </button>
+          <p>Analytics dashboard showing why customers pawn jewelry, broken down by age group, with date filters and Excel export.</p>
+
+          <span class="status">Internal system</span>
+        </div>
+      </a>
+
+      <!-- ================= 03 HOTEL ROSITA ================= -->
+
+      <a class="card" href="case-study.html?id=hotel-rosita">
+        <div class="shot">
+          <div class="browsermock">
+            <div class="bm-bar">
+              <span class="bm-dot r"></span>
+              <span class="bm-dot y"></span>
+              <span class="bm-dot g"></span>
+              <span class="bm-url">www.hotelrosita.com.ph</span>
+            </div>
+
+            <div class="bm-body hotel-thumbnail-body">
+              <img src="assets/projects/hotel-rosita/cover.jpg" alt="Hotel Rosita website thumbnail" class="hotel-thumbnail" loading="lazy">
+            </div>
+          </div>
+        </div>
+
+        <div class="body">
+          <div class="toprow">
+            <h3>Hotel Rosita</h3>
+            <span class="year">2024</span>
+          </div>
+
+          <p>Bringing the client's visual direction to life with a polished, responsive, and interactive website.</p>
+
+          <span class="status">Live</span>
+        </div>
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
 
 
+<!-- ================= WHAT I DO ================= -->
+
+<section id="skills">
+
+  <div class="wrap">
+
+    <div class="eyebrow">What I do</div>
+
+    <div class="dolist">
+
+      <div class="dorow">
+        <div class="dolabel">
+          <span class="donum">01</span>
+          <h3>Desktop &amp; web development</h3>
+        </div>
+        <p>WinForms tools and ASP.NET Web Forms applications, built around business requirements and SQL Server data.</p>
+      </div>
+
+      <div class="dorow">
+        <div class="dolabel">
+          <span class="donum">02</span>
+          <h3>Business systems</h3>
+        </div>
+        <p>Supporting business workflows, transaction processing, and reporting through applications built around SQL Server.</p>
+      </div>
+
+      <div class="dorow">
+        <div class="dolabel">
+          <span class="donum">03</span>
+          <h3>Maintenance &amp; support</h3>
+        </div>
+        <p>Keeping day-to-day business systems reliable, from bug fixes and database changes to new features shipped into production.</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= EXPERIENCE ================= -->
+
+<section id="experience">
+
+  <div class="wrap">
+
+    <div class="eyebrow">Currently</div>
+
+    <div class="now">
+      <div class="txt">
+        <h2>System Programmer I</h2>
+        <p>
+          Developing and maintaining internal business applications
+          using VB.NET, ASP.NET, SQL Server, and stored procedures,
+          while supporting day-to-day business requirements and
+          production systems.
+        </p>
+      </div>
+
+      <a class="more" href="about.html">
+        See the full path
+        <span>&#8599;</span>
+      </a>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= CONTACT ================= -->
+
+<section id="contact" style="border-bottom:1px solid var(--border-soft);">
+
+  <div class="wrap closing">
+
+    <h2>Have something worth building?</h2>
+
+    <p>Open to .NET development opportunities and meaningful problems worth solving well.</p>
+
+    <div class="btnrow">
+      <a class="btn primary" href="mailto:hello@example.com">Get in touch</a>
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+  <div class="wrap">
+
+    <div class="foottop">
+
+      <div class="footbrand">
+        <a class="logo" href="#top">jahzeel<span>.kiel</span></a>
+        <p>.NET developer building for the business.</p>
+      </div>
+
+      <nav class="footnav">
+        <a href="projects.html">Projects</a>
+        <a href="work.html">Work</a>
+        <a href="about.html">About</a>
+      </nav>
+
+      <div class="footsocial">
+        <div class="footsociallinks">
+          <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="mailto:hello@example.com">Email</a>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="footbottom">
+
+      <div class="copyright">© 2026 Jahzeel Kiel</div>
+
+      <div class="footctrls">
+        <a href="#top" aria-label="Back to top">&larr;</a>
+        <span class="footdot" aria-hidden="true"></span>
+        <a href="contact.html" aria-label="Get in touch">&rarr;</a>
+      </div>
+
+      <div class="footnote">Thanks for stopping by.</div>
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+<!-- ================= SHARED SITE SEARCH ================= -->
+<div class="site-search" id="siteSearch" aria-hidden="true">
+  <div class="site-search-box" role="dialog" aria-modal="true" aria-label="Search site">
+
+    <div class="site-search-head">
+      <span>Search site</span>
+      <button type="button" id="siteSearchClose" aria-label="Close search">Esc</button>
+    </div>
+
+    <input
+      id="siteSearchInput"
+      type="search"
+      placeholder="Jump to a page, project, or action..."
+      autocomplete="off"
+      spellcheck="false"
+      aria-label="Search site"
+    >
+
+    <div id="siteSearchResults" class="site-search-results"></div>
+
+    <div class="site-search-footer" aria-hidden="true">
+      <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+      <span><kbd>↵</kbd> select</span>
+      <span><kbd>esc</kbd> close</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- ================= TERMINAL ================= -->
+
+<div class="termoverlay" id="termOverlay" role="dialog" aria-modal="true" aria-label="Terminal">
+
+  <div class="termwin">
+
+    <div class="termbar">
+      <span class="dot r"></span>
+      <span class="dot y"></span>
+      <span class="dot g"></span>
+      <span class="termtitle">jahzeel@portfolio: ~</span>
+    </div>
+
+    <div class="termbody" id="termBody"></div>
+
+    <div class="terminput-row">
+      <span class="prompt">guest@portfolio ~ %</span>
+      <input
+        id="termInput"
+        type="text"
+        autocomplete="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-label="Terminal input"
+      >
+    </div>
+
+  </div>
 
 </div>
 
 
-      </div>
-
-    </aside>
-
-
-    <!-- =========================================================
-         MAIN CONTENT
-    ========================================================= -->
-
-    <main id="main-content" tabindex="-1">
-
-
-      <!-- =====================================================
-           ABOUT
-      ===================================================== -->
-
-      <section
-        id="about"
-        class="reveal"
-        style="animation-delay:0.2s">
-
-
-        <!-- =====================================================
-             TERMINAL BOOT ANIMATION
-             Decorative — types out a fake boot sequence, then
-             sits on a blinking "all systems online" line. Uses
-             the same CSS variables as the rest of the page, so
-             it follows the light/dark/system theme automatically.
-        ===================================================== -->
-
-        <div
-          class="terminal-boot"
-          id="terminalBoot"
-          aria-hidden="true">
-
-          <div class="terminal-boot-bar">
-
-            <span class="terminal-boot-dot"></span>
-            <span class="terminal-boot-dot"></span>
-            <span class="terminal-boot-dot terminal-boot-dot--accent"></span>
-
-            <span class="terminal-boot-label">
-              session
-            </span>
-
-          </div>
-
-          <div class="terminal-boot-lines" id="terminalBootLines">
-
-            <div
-              class="terminal-boot-line terminal-boot-line--boot"
-              data-text="$ boot --profile kiel"></div>
-
-            <div
-              class="terminal-boot-line"
-              data-text="  interface ............. ok"></div>
-
-            <div
-              class="terminal-boot-line"
-              data-text="  application ........... ok"></div>
-
-            <div
-              class="terminal-boot-line"
-              data-text="  systems ............... ok"></div>
-
-            <div
-              class="terminal-boot-line"
-              data-text="  infrastructure ........ ok"></div>
-
-            <div
-              class="terminal-boot-line terminal-boot-line--final"
-              data-text="→ all systems online">
-              <span
-                class="terminal-boot-cursor"
-                id="terminalBootCursor"></span>
-            </div>
-
-          </div>
-
-        </div>
-
-
-                <p>
-          I'm a software developer who enjoys turning complex business
-          requirements into reliable, maintainable applications. I like
-          working on the parts that often go unnoticed — debugging tricky
-          issues, improving slow queries, modernizing legacy systems, and
-          making applications easier to use and maintain.
-        </p>
-
-        <p>
-          My main focus is <strong>.NET</strong>, <strong>C#</strong>, and
-          <strong>SQL Server</strong>, with experience in
-          <strong>ASP.NET</strong>, web development, stored procedures,
-          and legacy application modernization.
-        </p>
-
-        <p>
-  I enjoy understanding how software works beyond the code itself —
-  from the database and application logic to the business processes
-  and users behind the system. I believe good software should not only
-  work, but also be practical, understandable, and easy to maintain.
-</p>
-
-        <p>
-          Outside of work, I enjoy learning new technologies, building
-          projects from scratch, and continuously improving how I think
-          and solve problems as a developer.
-        </p>
-
-
-        <!-- =====================================================
-             TECH STACK
-        ===================================================== -->
-
-        <!-- <div class="tech-stack">
-
-          <h3>Tech Stack</h3>
-
-          <p class="tech-stack-intro">
-            The tools and technologies I work with across application
-            development, databases, web development, and infrastructure.
-          </p>
-
-
-          <div class="tech-category">
-
-            <span class="tech-category-label">
-              BACKEND &amp; FRAMEWORKS
-            </span>
-
-            <div class="tech-list">
-              <span>C#</span>
-              <span>.NET</span>
-              <span>ASP.NET</span>
-              <span>VB.NET</span>
-            </div>
-
-          </div>
-
-
-          <div class="tech-category">
-
-            <span class="tech-category-label">
-              DATABASE
-            </span>
-
-            <div class="tech-list">
-              <span>SQL Server</span>
-              <span>Stored Procedures</span>
-              <span>Database Maintenance</span>
-            </div>
-
-          </div>
-
-
-          <div class="tech-category">
-
-            <span class="tech-category-label">
-              FRONTEND
-            </span>
-
-            <div class="tech-list">
-              <span>JavaScript</span>
-              <span>HTML</span>
-              <span>CSS</span>
-              <span>Bootstrap</span>
-              <span>AngularJS</span>
-            </div>
-
-          </div>
-
-
-          <div class="tech-category">
-
-            <span class="tech-category-label">
-              REPORTING
-            </span>
-
-            <div class="tech-list">
-              <span>RDLC</span>
-            </div>
-
-          </div>
-
-
-          <div class="tech-category">
-
-            <span class="tech-category-label">
-              WEB &amp; INFRASTRUCTURE
-            </span>
-
-            <div class="tech-list">
-              <span>IIS</span>
-              <span>cPanel</span>
-              <span>Namecheap</span>
-              <span>SSL</span>
-            </div>
-
-          </div>
-
-
-          <div class="tech-category">
-
-            <span class="tech-category-label">
-              DEVELOPER TOOLS
-            </span>
-
-            <div class="tech-list">
-              <span>Git</span>
-              <span>GitHub</span>
-              <span>VS Code</span>
-            </div>
-
-          </div>
-
-        </div> -->
-
-      </section>
-
-
-      <!-- =====================================================
-           EXPERIENCE
-      ===================================================== -->
-
-      <section
-        id="experience"
-        class="reveal"
-        style="animation-delay:0.25s">
-
-
-        <h2>
-          Experience
-        </h2>
-
-
-        <!-- RPI (current role) -->
-
-        <div class="job">
-
-          <time>
-            2025 - PRESENT
-          </time>
-
-          <div>
-
-            <h3 class="scramble">
-              <span
-                class="scramble-target"
-                data-text="RPI">RPI</span>
-              ·
-              <span class="company">
-                <span
-                  class="status-dot"
-                  aria-hidden="true"></span>
-                System Programmer I
-              </span>
-            </h3>
-
-            <p class="mt-2 text-sm leading-normal">
-              Develop and maintain business-critical .NET applications, modernize legacy systems, and deliver application features, reporting, and database solutions.
-            </p>
-
-<ul>
-  <li>C#</li>
-  <li>ASP.NET</li>
-  <li>.NET</li>
-  <li>VB.NET</li>
-  <li>MS SQL Server</li>
-  <li>IIS</li>
-  <li>JavaScript • HTML • CSS</li>
-  <li>Bootstrap</li>
-  <li>Legacy System Modernization</li>
-</ul>
-
-          </div>
-
-        </div>
-
-
-        <!-- PRIVATE CONTRACTOR -->
-
-        <div class="job">
-
-          <time>
-            2023 - 2024
-          </time>
-
-          <div>
-
-            <h3 class="scramble">
-              <span
-                class="scramble-target"
-                data-text="Private Contractor">Private Contractor</span>
-              ·
-              <span class="company">
-                Front-end Web Developer
-              </span>
-            </h3>
-
-            <p class="mt-2 text-sm leading-normal">
-              Developed and maintained responsive websites and
-              e-commerce solutions with a focus on usability,
-              performance, and compatibility.
-            </p>
-
-            <ul>
-
-              <li>AngularJS</li>
-              <li>JavaScript</li>
-              <li>HTML &amp; CSS</li>
-              <li>Responsive Web Development</li>
-              <li>Website Performance Optimization</li>
-
-            </ul>
-
-          </div>
-
-        </div>
-
-
-        <!-- GUAVATEK -->
-
-        <div class="job">
-
-          <time>
-            2022 - 2023
-          </time>
-
-          <div>
-
-            <h3 class="scramble">
-              <span
-                class="scramble-target"
-                data-text="Guavatek">Guavatek</span>
-              ·
-              <span class="company">
-                Junior Web Developer
-              </span>
-            </h3>
-
-            <p class="mt-2 text-sm leading-normal">
-              Developed and maintained client and internal websites,
-              implementing responsive interfaces and features based
-              on project requirements.
-            </p>
-
-            <ul>
-
-              <li>AngularJS</li>
-              <li>JavaScript</li>
-              <li>HTML &amp; CSS</li>
-              <li>Bootstrap</li>
-              <li>cPanel · Namecheap · SSL</li>
-
-            </ul>
-
-          </div>
-
-        </div>
-
-
-        <!-- RODRIGUEZ PROPERTY -->
-
-        <div class="job">
-
-          <time>
-            2020 - 2022
-          </time>
-
-          <div>
-
-            <h3 class="scramble">
-              <span
-                class="scramble-target"
-                data-text="Rodriguez Property Ventures &amp; Dev't Corp.">Rodriguez Property Ventures &amp; Dev't Corp.</span>
-              ·
-              <span class="company">
-                IT &amp; Web Development Support
-              </span>
-            </h3>
-
-            <p class="mt-2 text-sm leading-normal">
-              Supported business operations through web development,
-              system maintenance, inventory management, and technical
-              support.
-            </p>
-
-            <ul>
-
-              <li>HTML</li>
-              <li>CSS</li>
-              <li>JavaScript</li>
-              <li>Website &amp; System Maintenance</li>
-              <li>Technical Support</li>
-
-            </ul>
-
-          </div>
-
-        </div>
-
-
-        <!-- QUADFINITY -->
-
-        <div class="job">
-
-          <time>
-            2018 - 2019
-          </time>
-
-          <div>
-
-            <h3 class="scramble">
-              <span
-                class="scramble-target"
-                data-text="Quadfinity Solution">Quadfinity Solution</span>
-              ·
-              <span class="company">
-                Web Developer Intern
-              </span>
-            </h3>
-
-            <p class="mt-2 text-sm leading-normal">
-              Assisted in developing, modifying, and testing responsive
-              websites while gaining hands-on web development experience.
-            </p>
-
-            <ul>
-
-              <li>HTML</li>
-              <li>CSS</li>
-              <li>JavaScript</li>
-              <li>Responsive Web Development</li>
-              <li>Website Testing &amp; Debugging</li>
-
-            </ul>
-
-          </div>
-
-        </div>
-
-
-        <!-- ===================================================
-             FULL RESUME
-        ===================================================== -->
-
-        <div class="resume-link">
-
-          <a
-            href="resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer">
-
-            View Full Résumé
-
-            <span>
-              →
-            </span>
-
-          </a>
-
-        </div>
-
-      </section>
-
-
-      <!-- =====================================================
-           WORK
-      ===================================================== -->
-
-      <section
-        id="work"
-        class="reveal"
-        style="animation-delay:0.3s">
-
-
-        <h2>
-          Selected Work
-        </h2>
-
-
-        <!-- ===================================================
-             PROJECT 1
-        ===================================================== -->
-
-        <div class="project">
-
-
-          <div class="thumb">
-
-            <svg
-              viewBox="0 0 200 120"
-              xmlns="http://www.w3.org/2000/svg">
-
-              <rect
-                width="200"
-                height="120"
-                fill="var(--surface)" />
-
-              <circle
-                cx="12"
-                cy="12"
-                r="3"
-                fill="var(--border)" />
-
-              <circle
-                cx="22"
-                cy="12"
-                r="3"
-                fill="var(--border)" />
-
-              <circle
-                cx="32"
-                cy="12"
-                r="3"
-                fill="var(--border)" />
-
-              <line
-                class="draw-path"
-                x1="16"
-                y1="102"
-                x2="184"
-                y2="102"
-                stroke="var(--border)" />
-
-              <line
-                class="draw-path"
-                x1="16"
-                y1="26"
-                x2="16"
-                y2="102"
-                stroke="var(--border)" />
-
-              <polyline
-                class="draw-path draw-path--accent"
-                points="16,84 40,70 64,80 88,50 112,64 136,34 160,48 184,22"
-                fill="none"
-                stroke="var(--accent)"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round" />
-
-              <circle
-                class="draw-path-dot"
-                cx="184"
-                cy="22"
-                r="3"
-                fill="var(--accent)" />
-
-            </svg>
-
-          </div>
-
-
-          <div>
-
-            <h3 class="scramble">
-              <span
-                class="scramble-target"
-                data-text="Ledger">Ledger</span>
-            </h3>
-
-            <p>
-              A financial dashboard and reporting interface focused
-              on performance, usability, and clean data visualization.
-            </p>
-
-            <ul>
-
-              <li>C#</li>
-              <li>ASP.NET</li>
-              <li>SQL Server</li>
-
-            </ul>
-
-          </div>
-
-
-          <div class="project-side">
-
-            <a
-              class="btn-demo"
-              href="404.html"
-              target="_blank"
-              rel="noopener noreferrer">
-
-              Live Demo
-
-            </a>
-
-            <span class="num">
-              2026
-            </span>
-
-          </div>
-
-        </div>
-
-
-        <!-- ===================================================
-             PROJECT 2
-        ===================================================== -->
-
-        <div class="project">
-
-
-          <div class="thumb">
-
-            <svg
-              viewBox="0 0 200 120"
-              xmlns="http://www.w3.org/2000/svg">
-
-              <rect
-                width="200"
-                height="120"
-                fill="var(--surface)" />
-
-              <rect
-                class="draw-path"
-                x="16"
-                y="26"
-                width="88"
-                height="82"
-                rx="3"
-                fill="none"
-                stroke="var(--border)" />
-
-              <line
-                x1="24"
-                y1="42"
-                x2="96"
-                y2="42"
-                stroke="var(--muted)"
-                stroke-opacity="0.55" />
-
-              <line
-                x1="24"
-                y1="54"
-                x2="96"
-                y2="54"
-                stroke="var(--muted)"
-                stroke-opacity="0.55" />
-
-              <circle
-                class="draw-path draw-path--accent"
-                cx="150"
-                cy="60"
-                r="22"
-                fill="none"
-                stroke="var(--accent)"
-                stroke-width="2" />
-
-            </svg>
-
-          </div>
-
-
-          <div>
-
-            <h3 class="scramble">
-              <span
-                class="scramble-target"
-                data-text="Preventive Maintenance System">Preventive Maintenance System</span>
-            </h3>
-
-            <p>
-              A system for managing preventive maintenance records,
-              equipment information, and scheduled maintenance activities.
-            </p>
-
-            <ul>
-
-              <li>ASP.NET</li>
-              <li>C#</li>
-              <li>SQL Server</li>
-
-            </ul>
-
-          </div>
-
-
-          <div class="project-side">
-
-            <a
-              class="btn-demo"
-              href="maintenance.html"
-              target="_blank"
-              rel="noopener noreferrer">
-
-              Live Demo
-
-            </a>
-
-            <span class="num">
-              2026
-            </span>
-
-          </div>
-
-        </div>
-
-
-        <!-- ===================================================
-             PROJECT 3
-        ===================================================== -->
-
-        <div class="project">
-
-
-          <div class="thumb">
-
-            <svg
-              viewBox="0 0 200 120"
-              xmlns="http://www.w3.org/2000/svg">
-
-              <rect
-                width="200"
-                height="120"
-                fill="var(--surface)" />
-
-              <rect
-                x="16"
-                y="26"
-                width="38"
-                height="26"
-                rx="4"
-                fill="var(--accent)"
-                fill-opacity="0.85" />
-
-              <rect
-                x="60"
-                y="26"
-                width="38"
-                height="26"
-                rx="4"
-                fill="var(--muted)"
-                fill-opacity="0.35" />
-
-              <rect
-                class="draw-path"
-                x="104"
-                y="26"
-                width="38"
-                height="26"
-                rx="4"
-                fill="none"
-                stroke="var(--border)" />
-
-              <rect
-                class="draw-path"
-                x="16"
-                y="60"
-                width="168"
-                height="10"
-                rx="3"
-                fill="none"
-                stroke="var(--border)" />
-
-            </svg>
-
-          </div>
-
-
-          <div>
-
-            <h3 class="scramble">
-              <span
-                class="scramble-target"
-                data-text="Portfolio Dashboard">Portfolio Dashboard</span>
-            </h3>
-
-            <p>
-              A modern developer portfolio built with a clean fixed-sidebar
-              layout and responsive design.
-            </p>
-
-            <ul>
-
-              <li>HTML</li>
-              <li>CSS</li>
-              <li>JavaScript</li>
-
-            </ul>
-
-          </div>
-
-
-          <div class="project-side">
-
-            <a
-              class="btn-demo"
-              href="index.html">
-
-              You're Viewing It
-
-            </a>
-
-            <span class="num">
-              2026
-            </span>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- =====================================================
-           CONTACT
-      ===================================================== -->
-
-      <section
-        id="contact"
-        class="reveal"
-        style="animation-delay:0.35s">
-
-
-        <h2>
-          Contact
-        </h2>
-
-
-        <p class="lead">
-          Always glad to hear about interesting problems or talk about
-          technology.
-        </p>
-
-
-        <a
-          class="email"
-          href="mailto:jhzlklprs@gmail.com">
-
-          jhzlklprs@gmail.com
-
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            width="16"
-            height="16">
-
-            <path
-              d="M7 17L17 7M17 7H9M17 7v8" />
-
-          </svg>
-
-        </a>
-
-      </section>
-
-
-      <!-- =====================================================
-           FOOTER
-      ===================================================== -->
-
-      <footer>
-
-        Built with plain HTML, CSS &amp; JavaScript.
-
-      </footer>
-
-
-    </main>
-
-  </div>
-
-
-  <!-- =========================================================
-       JAVASCRIPT
-  ========================================================= -->
-
-  <script src="assets/js/main.js"></script>
-
+<script src="js/script.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/search.js"></script>
 </body>
-
 </html>

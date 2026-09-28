@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <title>Project Case Study · Jahzeel Kiel</title>
+  <meta name="description" content="Project case study by Jahzeel Kiel.">
+
+  <!-- Keep your existing site stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/case-study.css">
+  <link rel="stylesheet" href="css/search.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&family=Hanken+Grotesk:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header>
+  <div class="wrap navrow">
+
+    <a class="logo" href="index.html">
+      jahzeel<span>.kiel</span>
+    </a>
+
+    <nav class="links" aria-label="Primary navigation">
+      <a href="projects.html">
+        <span class="idx">01</span>Projects
+      </a>
+
+      <a href="work.html">
+        <span class="idx">02</span>Work
+      </a>
+
+      <a href="about.html">
+        <span class="idx">03</span>About
+      </a>
+    </nav>
+
+    <div class="navactions">
+      <button class="site-search-trigger" type="button" id="siteSearchBtn" aria-label="Search site">
+        <span class="search-icon">⌕</span>
+        <span>Search</span>
+        <kbd>Ctrl K</kbd>
+      </button>
+
+      <a class="cta-btn" href="contact.html">
+        Get in touch
+      </a>
+
+      <button
+        class="burger"
+        id="burgerBtn"
+        aria-label="Open menu"
+        aria-expanded="false"
+        type="button"
+      >
+        <svg
+          id="burgerIcon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+        >
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobilemenu" id="mobileMenu">
+    <a href="projects.html">
+      <span class="idx">01</span>Projects
+    </a>
+
+    <a href="work.html">
+      <span class="idx">02</span>Work
+    </a>
+
+    <a href="about.html">
+      <span class="idx">03</span>About
+    </a>
+
+    <button type="button" class="mobile-search-trigger" id="mobileSearchBtn">
+      <span class="idx">04</span>Search
+    </button>
+
+    <a class="btn primary cta-btn" href="contact.html">
+      Get in touch
+    </a>
+  </div>
+</header>
+
+
+<main id="caseRoot">
+  <noscript><p class="wrap" style="padding:160px 0">Enable JavaScript to view this case study, or go back to <a href="projects.html">Projects</a>.</p></noscript>
+</main>
+
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+
+    <div>
+      <div class="footer-name">jahzeel.kiel</div>
+      <p>.NET developer building for the business.</p>
+    </div>
+
+    <div class="footer-links">
+      <a href="projects.html">Projects</a>
+      <a href="work.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+
+  <div class="wrap footer-bottom">
+    <span>© 2026 Jahzeel Kiel</span>
+    <span>Designed and built from scratch.</span>
+  </div>
+</footer>
+
+
+<script src="js/projects-data.js"></script>
+<script src="js/case-study.js"></script>
+
+<!-- ================= SHARED SITE SEARCH ================= -->
+<div class="site-search" id="siteSearch" aria-hidden="true">
+  <div class="site-search-box" role="dialog" aria-modal="true" aria-label="Search site">
+
+    <div class="site-search-head">
+      <span>Search site</span>
+      <button type="button" id="siteSearchClose" aria-label="Close search">Esc</button>
+    </div>
+
+    <input
+      id="siteSearchInput"
+      type="search"
+      placeholder="Jump to a page, project, or action..."
+      autocomplete="off"
+      spellcheck="false"
+      aria-label="Search site"
+    >
+
+    <div id="siteSearchResults" class="site-search-results"></div>
+
+    <div class="site-search-footer" aria-hidden="true">
+      <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+      <span><kbd>↵</kbd> select</span>
+      <span><kbd>esc</kbd> close</span>
+    </div>
+
+  </div>
+</div>
+
+<script src="js/nav.js"></script>
+<script src="js/search.js"></script>
+</body>
+</html>

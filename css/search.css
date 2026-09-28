@@ -1,0 +1,383 @@
+/* ============================================================
+   SHARED SITE SEARCH
+   One search UI used by every page for consistent navigation.
+   ============================================================ */
+
+.site-search-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 224px;
+  height: 36px;
+  box-sizing: border-box;
+  border: 1px solid var(--border-soft, #25282c);
+  background: rgba(255,255,255,.025);
+  border-radius: 7px;
+  padding: 0 8px 0 10px;
+  cursor: pointer;
+  color: var(--muted, #858a91);
+  font: 12px/1 "Geist Mono", monospace;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-search-trigger:hover {
+  color: var(--text, #f2f2ee);
+  border-color: rgba(255,255,255,.16);
+}
+
+.site-search-trigger .search-icon {
+  flex: 0 0 auto;
+  font-size: 20px;
+  line-height: 1;
+  transform: translateY(-1px);
+}
+
+.site-search-trigger kbd {
+  flex: 0 0 auto;
+  margin-left: auto;
+  color: var(--muted, #858a91);
+  border: 1px solid var(--border-soft, #25282c);
+  border-radius: 5px;
+  padding: 3px 6px;
+  font: 10px/1 "Geist Mono", monospace;
+}
+
+.mobile-search-trigger {
+  width: 100%;
+  box-sizing: border-box;
+  border: 0;
+  border-bottom: 1px solid var(--border-soft, #25282c);
+  background: transparent;
+  color: var(--text-dim, #a2a7ad);
+  padding: 18px 4px;
+  text-align: left;
+  font: 20px/1.2 "Geist", sans-serif;
+  cursor: pointer;
+}
+
+.mobile-search-trigger .idx {
+  margin-right: 8px;
+  font: 12px/1 "Geist Mono", monospace;
+  color: var(--text-dimmer, #666d75);
+}
+
+/* Case-study/mobile-menu variant */
+.mobile-menu .mobile-search-trigger,
+.mobilemenu .mobile-search-trigger {
+  padding: 16px 0;
+}
+
+/* ---------- Search overlay ---------- */
+
+.site-search {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(5,6,7,.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+}
+
+.site-search.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.site-search-box {
+  width: min(620px, calc(100vw - 32px));
+  overflow: hidden;
+  border: 1px solid #2b2e33;
+  border-radius: 10px;
+  background: #111316;
+  box-shadow: 0 30px 100px rgba(0,0,0,.55);
+  transform: translateY(-8px) scale(.985);
+  transition: transform .2s ease;
+}
+
+.site-search.open .site-search-box {
+  transform: translateY(0) scale(1);
+}
+
+.site-search-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 15px;
+  border-bottom: 1px solid #24272b;
+  color: #777c83;
+  font: 10px/1 var(--mono, monospace);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.site-search-head button {
+  border: 1px solid #2c3035;
+  border-radius: 4px;
+  background: transparent;
+  color: #8a8f96;
+  padding: 4px 6px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.site-search-head button:hover {
+  color: #f1f1ee;
+  border-color: #454a51;
+}
+
+.site-search-box input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 0;
+  outline: 0;
+  padding: 18px;
+  background: transparent;
+  color: #f1f1ee;
+  font: 16px/1.4 var(--body, "Hanken Grotesk", sans-serif);
+}
+
+.site-search-box input::placeholder {
+  color: #5e636a;
+}
+
+.site-search-results {
+  max-height: 380px;
+  overflow: auto;
+  border-top: 1px solid #202328;
+}
+
+.site-search-result {
+  display: block;
+  padding: 14px 18px;
+  border-bottom: 1px solid #1e2125;
+  color: inherit;
+  text-decoration: none;
+  transition: background .15s ease;
+}
+
+.site-search-result:hover,
+.site-search-result:focus-visible {
+  background: rgba(255,255,255,.035);
+  outline: none;
+}
+
+.site-search-result strong {
+  display: block;
+  color: #f1f1ee;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.site-search-result span {
+  display: block;
+  margin-top: 4px;
+  color: #777c83;
+  font: 10px/1.5 var(--mono, monospace);
+}
+
+.site-search-empty {
+  padding: 18px;
+  color: #777c83;
+}
+
+.site-search-empty strong {
+  display: block;
+  color: #f1f1ee;
+  font-size: 14px;
+}
+
+.site-search-empty span {
+  display: block;
+  margin-top: 5px;
+  font: 10px/1.5 var(--mono, monospace);
+}
+
+/* Keep desktop navs aligned */
+.projects-nav .project-nav-actions,
+.work-nav .work-nav-actions,
+.site-header .nav-actions,
+header > .navrow .navactions {
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .site-search-trigger {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-search,
+  .site-search-box {
+    transition: none;
+  }
+}
+
+
+/* ---------- Categorized command-palette results ---------- */
+.site-search-box {
+  width: 512px;
+  height: 447px;
+  max-width: calc(100vw - 24px);
+  max-height: calc(100vh - 32px);
+  display: flex;
+  flex-direction: column;
+}
+
+.site-search-head {
+  display: none;
+}
+
+.site-search-box input {
+  flex: 0 0 60px;
+  height: 60px;
+  padding: 16px 18px 15px 52px;
+  border-bottom: 1px solid #24272b;
+  font: 16px/1.4 "Geist Mono", monospace;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2718%27 height=%2718%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%238c949d%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Ccircle cx=%2711%27 cy=%2711%27 r=%276.5%27/%3E%3Cpath d=%27m16 16 4 4%27/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 18px 50%;
+  background-size: 18px 18px;
+}
+
+.site-search-results {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: none;
+  border-top: 0;
+  padding: 9px 10px 12px;
+}
+
+.site-search-group {
+  padding: 10px 15px 8px;
+  color: #777f89;
+  font: 10px/1 "Geist Mono", monospace;
+  letter-spacing: .16em;
+}
+
+.site-search-result {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 44px;
+  box-sizing: border-box;
+  padding: 9px 15px;
+  margin: 1px 0;
+  border: 0;
+  border-radius: 6px;
+}
+
+.site-search-result-main {
+  min-width: 0;
+}
+
+.site-search-result strong {
+  color: #d8d5cf;
+  font: 500 14px/1.25 "Geist Mono", monospace;
+}
+
+.site-search-result span:not(.site-search-result-main):not(.site-search-enter) {
+  margin-top: 4px;
+}
+
+.site-search-result-main > span {
+  display: none;
+}
+
+.site-search-result:hover,
+.site-search-result:focus-visible,
+.site-search-result.is-selected {
+  background: rgba(255,122,69,.12);
+}
+
+.site-search-result.is-selected strong {
+  color: #eee9df;
+}
+
+.site-search-enter {
+  flex: 0 0 auto;
+  color: #ff7a45;
+  font: 13px/1 var(--mono, monospace);
+  opacity: 0;
+}
+
+.site-search-result.is-selected .site-search-enter {
+  opacity: 1;
+}
+
+.site-search-empty {
+  padding: 24px 15px;
+}
+
+.site-search-footer {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 0 0 40px;
+  min-height: 40px;
+  height: 40px;
+  box-sizing: border-box;
+  padding: 7px 15px;
+  border-top: 1px solid #24272b;
+  color: #737981;
+  font: 10px/1 var(--mono, monospace);
+}
+
+.site-search-footer span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.site-search-footer kbd {
+  display: inline-grid;
+  place-items: center;
+  min-width: 19px;
+  height: 19px;
+  box-sizing: border-box;
+  border: 1px solid #2c3035;
+  border-radius: 50%;
+  color: #a0a5ac;
+  font: 10px/1 var(--mono, monospace);
+}
+
+@media (max-width: 600px) {
+  .site-search {
+    padding-top: 12px;
+  }
+
+  .site-search-box {
+    width: min(512px, calc(100vw - 18px));
+  }
+
+  .site-search-results {
+    max-height: none;
+    height: min(447px, calc(100vh - 24px));
+  }
+
+  .site-search-footer {
+    gap: 9px;
+    flex-wrap: wrap;
+  }
+}
+
+
+/* Final mobile menu surface: fully opaque so page content never shows through. */
+@media (max-width: 900px) {
+  .mobilemenu,
+  .mobile-menu {
+    background: #0a0b0d !important;
+    background-image: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}

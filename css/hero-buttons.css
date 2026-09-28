@@ -1,0 +1,61 @@
+/* ---- hero action buttons (See the work + Résumé) ---- */
+.hero-actions {
+  align-items: center;
+  gap: 22px;
+  margin-top: -8px;
+  margin-bottom: 8px;
+}
+
+.work-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-radius: 6px;
+  border: 1px solid var(--accent-dim);
+  background: rgba(255, 122, 69, 0.08);
+  color: var(--text);
+  font-family: "Geist Mono", monospace;
+  font-size: 13.5px;
+  font-weight: 500;
+  transition: background 0.2s, border-color 0.2s, transform 0.18s ease;
+}
+.work-btn svg {
+  width: 15px;
+  height: 15px;
+  transition: transform 0.2s ease;
+}
+.work-btn:hover {
+  background: rgba(255, 122, 69, 0.16);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.work-btn:hover svg {
+  transform: translateX(3px);
+}
+
+.resume-link,
+.nav-resume {
+  font-family: "Geist Mono", monospace;
+  font-size: 13px;
+  color: var(--text-dim);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s;
+}
+.resume-link span {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+.resume-link:hover,
+.nav-resume:hover {
+  color: var(--text);
+}
+.resume-link:hover span {
+  transform: translate(2px, -2px);
+}
+
+@media (max-width: 860px) {
+  .nav-resume { display: none; } /* Résumé is in the mobile menu instead */
+}
