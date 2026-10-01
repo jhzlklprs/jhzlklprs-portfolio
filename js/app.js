@@ -91,7 +91,8 @@ const concept = {
 function projects() {
   const big = S.projects.slice(0, 5), more = S.projects.slice(5);
   const row = (p, i) => {
-    const live = p.links && p.links.live;
+    const internal = p.meta && p.meta.Type === "Internal system";
+    const live = internal ? `#/private/${p.slug}` : p.links && p.links.live;
     return `
     <article class="featured-project reveal${i % 2 ? " reverse" : ""}">
       <div class="project-media">
@@ -106,7 +107,7 @@ function projects() {
         <div class="project-kicker">${esc(p.tagline)}</div>
         <p>${esc(p.oneLiner || p.summary)}</p>
         ${tagSpans(p.stack.slice(0, 5), "project-tags")}
-        <div class="project-links"><a href="#/projects/${p.slug}">Case study <span>↗</span></a>${live ? `<a href="${live}" target="_blank" rel="noopener noreferrer">Live <span>↗</span></a>` : ""}</div>
+        <div class="project-links"><a href="#/projects/${p.slug}">Case study <span>↗</span></a>${live ? `<a href="${live}"${internal ? "" : ' target="_blank" rel="noopener noreferrer"'}>Live <span>↗</span></a>` : ""}</div>
       </div>
     </article>`;
   };
@@ -152,8 +153,9 @@ function project(slug) {
   const i = S.projects.findIndex((x) => x.slug === slug);
   if (i < 0) return notFound();
   const p = S.projects[i], next = S.projects[(i + 1) % S.projects.length];
-  const live = p.links && p.links.live;
-  const liveLabel = p.meta && p.meta.Type === "Internal system" ? "Live system" : "Live site";
+  const internal = p.meta && p.meta.Type === "Internal system";
+  const live = internal ? `#/private/${p.slug}` : p.links && p.links.live;
+  const liveLabel = internal ? "Live system" : "Live site";
   const body = p.detail ? String(p.detail).split(/\n\n+/) : [];
   const meta = Object.entries(p.meta || {});
   const arr = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 9l6-6M4 3h5v5"/></svg>`;
@@ -165,7 +167,7 @@ function project(slug) {
     <div class="case-meta-line"><span class="yr">${p.year}</span>${p.tagline ? `<span class="rule"></span><span>${esc(p.tagline)}</span>` : ""}${p.status ? `<span class="rule"></span><span class="state">● ${esc(p.status)}</span>` : ""}</div>
     <h1 class="case-title">${esc(p.name)}</h1>
     <p class="case-lead">${esc(p.summary)}</p>
-    ${live ? `<div class="case-links"><a class="primary" href="${live}" target="_blank" rel="noopener noreferrer">${liveLabel}${arr}</a></div>` : ""}
+    ${live ? `<div class="case-links"><a class="primary" href="${live}"${internal ? "" : ' target="_blank" rel="noopener noreferrer"'}>${liveLabel}${arr}</a></div>` : ""}
     ${meta.length ? `<div class="case-badges">${meta.map(([k, v]) => `<span class="case-badge"><b>${esc(k)}</b><span>${esc(v)}</span></span>`).join("")}</div>` : ""}
     ${p.image ? `<figure class="case-shot"><div class="case-shot-bar"><i></i><i></i><i></i>${p.browserUrl ? `<span class="case-shot-url">${esc(p.browserUrl)}</span>` : ""}</div><img src="${asset(p.image)}" alt="${esc(p.name)} screenshot"></figure>` : ""}
     ${body.length || p.note || hasSide ? `<div class="case-body${hasSide ? "" : " no-side"}">
@@ -294,7 +296,40 @@ function bindContact() {
   });
 }
 
-const notFound = () => `${head("404", "Page not found.")}<p><a class="cta" href="#/">Back home</a></p></div>`;
+const screen = (code, title, lines, back, extra = "") => `<div class="pg"><section class="state-page"><div class="wrap">
+  <div class="state-term" role="status">
+    <div class="state-bar"><i></i><i></i><i></i><span>${esc(code)}</span></div>
+    <pre class="state-log">${lines.map(esc).join("\n")}<span class="cursor">_</span></pre>
+  </div>
+  <h1>${title}</h1>${extra}
+  <div class="state-actions">${back}</div>
+</div></section></div>`;
+
+function credits() {
+  const x = (u, t) => `<a href="${u}" target="_blank" rel="noopener noreferrer">${t}</a>`;
+  return screen("credits", "Credits.",
+    ["> 3D model ...... CC BY 4.0", "> software ....... MIT / Zlib", "> fonts .......... SIL OFL 1.1"],
+    `<a class="cta" href="#/">Back home</a>`,
+    `<div class="state-credits dim">
+      <p><b>3D model.</b> &ldquo;${x("https://skfb.ly/6XW9w", "IBM 3278 terminal")}&rdquo; by ${x("https://sketchfab.com/maxdragon", "maxdragonn")}, licensed under ${x("http://creativecommons.org/licenses/by/4.0/", "Creative Commons Attribution 4.0")}. Modified: the screen artwork was removed and replaced with a live canvas display, and the model is rotated, rescaled, and lit in code. The author does not endorse this site. ${x("CREDITS.md", "Full details")}</p>
+      <p><b>Software.</b> ${x("https://threejs.org", "three.js")} (MIT) and ${x("https://github.com/pmndrs/postprocessing", "postprocessing")} (Zlib).</p>
+      <p><b>Fonts.</b> ${x("https://github.com/vercel/geist-font", "Geist")} and Geist Mono, and ${x("https://github.com/marcologous/hanken-grotesk", "Hanken Grotesk")} (SIL Open Font License 1.1).</p>
+    </div>`);
+}
+
+const notFound = () => screen("error.404", "Page not found.",
+  ["> GET " + (location.hash || "/"), "> route ........ not found", "> status ....... 404"],
+  `<a class="cta" href="#/">Back home</a><a class="mono muted ext" href="#/projects">Browse projects ${arrow}</a>`,
+  `<p class="dim">That page doesn't exist, or it has moved.</p>`);
+
+function privateSystem(slug) {
+  const p = S.projects.find((x) => x.slug === slug);
+  if (!p) return notFound();
+  return screen("internal." + p.slug, `${esc(p.name)} is an internal system.`,
+    ["> connect " + p.slug, "> network ...... private", "> access ........ restricted", "> status ........ not publicly available"],
+    `<a class="cta" href="#/projects/${p.slug}">Read the case study</a><a class="mono muted ext" href="#/projects">All projects ${arrow}</a>`,
+    `<p class="dim">It runs inside a company network, so there's no public demo. The case study covers what it does, how it's built, and screenshots of the real interface.</p>`);
+}
 
 /* ---------- boot log (hero) ---------- */
 function boot() {
@@ -323,13 +358,13 @@ function mount3d() {
 /* ---------- router ---------- */
 // the page is built by JS, so let us own scroll position: otherwise the browser restores the old offset after load
 if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-const routes = { "": home, projects, work, about, contact };
+const routes = { "": home, projects, work, about, contact, credits };
 function render() {
   document.querySelectorAll(".device").forEach((d) => d._io && d._io.disconnect());
   scene && (scene.dispose ? scene.dispose() : scene.stop()); scene = null;
   const [, a, b] = location.hash.replace(/^#/, "").split("/"); // "#/projects/slug" -> ["", "projects", "slug"]
   const key = a || "";
-  const html = key === "projects" && b ? project(b) : routes[key] ? routes[key]() : notFound();
+  const html = key === "projects" && b ? project(b) : key === "private" && b ? privateSystem(b) : routes[key] ? routes[key]() : notFound();
   const m = $("#main"); m.innerHTML = `<div class="page-in">${html}</div>`;
   document.title = key ? `${key[0].toUpperCase() + key.slice(1)} · ${P.name}` : `${P.name} · ${P.role}`;
   document.querySelectorAll("#nav a").forEach((l) => l.classList.toggle("on", l.getAttribute("href") === "#/" + key));
@@ -344,7 +379,7 @@ function reveal() {
 $("#nav").innerHTML = S.navLinks.map((l) => `<a href="#${l.href}">${l.label}</a>`).join("") + `<a href="#/contact">Contact</a>`;
 $("#foot").innerHTML = `<span class="mono muted">© ${new Date().getFullYear()} ${esc(P.name)}</span>
   <span>${link(P.socials.github, "GitHub")} ${link(P.socials.linkedin, "LinkedIn")} <a class="ext" href="mailto:${P.email}">Email</a></span>
-  <span class="credit mono muted">3D model <a href="https://skfb.ly/6XW9w" target="_blank" rel="noopener noreferrer">&ldquo;IBM 3278 terminal&rdquo;</a> by <a href="https://sketchfab.com/maxdragon" target="_blank" rel="noopener noreferrer">maxdragonn</a>, licensed <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>. Modified: <a href="CREDITS.md" target="_blank" rel="noopener noreferrer">see credits</a>.</span>`;
+  <span class="mono muted"><a class="ext" href="#/credits">Credits</a></span>`;
 document.addEventListener("visibilitychange", () => scene && (document.hidden ? scene.stop() : scene.start()));
 addEventListener("hashchange", render);
 render();

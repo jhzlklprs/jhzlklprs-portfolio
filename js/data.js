@@ -317,9 +317,6 @@ window.SITE={
    "note": "The system is at its first stage, view-only. The next feature lets employees apply for a transaction type directly, and administrators will see those requests.",
    "image": "/assets/projects/employee-disbursements-tracker/cover.jpg",
    "browserUrl": "internal.disbursements-tracker",
-   "links": {
-    "live": "https://rpiwebhost.gotdns.com/EDT/Dashboard.aspx"
-   },
    "active": true
   },
   {
@@ -348,6 +345,10 @@ window.SITE={
     "Type": "Portfolio"
    },
    "image": "/assets/projects/personal-portfolio/cover.jpg",
+   "browserUrl": "jahzeelkiel.vercel.app",
+   "links": {
+    "live": "https://jahzeelkiel.vercel.app"
+   },
    "active": true
   },
   {

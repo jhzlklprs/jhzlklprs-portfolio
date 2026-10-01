@@ -1495,3 +1495,21 @@
 .card h3{line-height:1.2}
 .card .card-h + p{margin-top:.35rem}
 .band h2.sm + p{margin-top:.75rem}
+
+
+/* ---- internal-system + 404 state page ---- */
+.state-page{padding:9rem 0 5rem;min-height:80dvh;display:flex;align-items:center}
+.state-term{max-width:34rem;background:var(--surface);border:1px solid var(--line);border-radius:.75rem;overflow:hidden;margin-bottom:2.25rem;box-shadow:0 0 60px rgba(var(--lavender-rgb),.08)}
+.state-bar{display:flex;align-items:center;gap:.4rem;padding:.7rem 1rem;border-bottom:1px solid var(--line);font:.72rem var(--mono);color:var(--muted)}
+.state-bar i{width:.6rem;height:.6rem;border-radius:50%;background:var(--field)}
+.state-bar span{margin-left:.6rem}
+.state-log{margin:0;padding:1.1rem 1.25rem;font:.85rem/1.8 var(--mono);color:var(--lavender-b);white-space:pre-wrap}
+.state-log .cursor{animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.state-page h1{font-size:clamp(2rem,5vw,3.4rem);max-width:40rem;line-height:1.08}
+.state-page p.dim{margin-top:1rem;max-width:34rem}
+.state-actions{display:flex;flex-wrap:wrap;align-items:center;gap:1.5rem;margin-top:2rem}
+@media(prefers-reduced-motion:reduce){.state-log .cursor{animation:none}}
+.state-credits{max-width:40rem;margin-top:1.25rem;font-size:.95rem}
+.state-credits p{margin-top:.9rem}.state-credits b{color:var(--bone);font-weight:600}
+.state-credits a{color:var(--lavender-b);text-decoration:underline;text-underline-offset:3px}

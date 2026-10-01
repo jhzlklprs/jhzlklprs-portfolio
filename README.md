@@ -21,6 +21,8 @@ A hand-written portfolio in plain HTML, CSS, and JavaScript. There is no framewo
 ## Structure
 
 ```
+404.html              themed 404 for unknown URLs (Vercel serves it automatically)
+vercel.json           caching + security headers
 index.html            shell: nav, <main>, footer, import map
 css/style.css         base styles and theme
 css/pages.css         page and component styles
@@ -60,7 +62,7 @@ Third-party work, including the 3D model (CC BY 4.0), three.js, postprocessing, 
 
 ## License
 
-<!-- TODO: choose a license and add a LICENSE file, then name it here. -->
+All rights reserved. See [LICENSE](LICENSE): you may read the source, but please don't redeploy it as your own.
 
 ## Citation
 
@@ -70,4 +72,4 @@ See [CITATION.cff](CITATION.cff).
 
 **Jahzeel Kiel**, .NET developer, Lucena City, Philippines
 
-<!-- TODO: add links, e.g. Website · GitHub · LinkedIn · Email -->
+[Website](https://jahzeelkiel.vercel.app) · [GitHub](https://github.com/jhzlklprs) · [LinkedIn](https://www.linkedin.com/in/jhzlklprs/) · [Email](mailto:jhzlklprs@gmail.com)

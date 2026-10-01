@@ -26,7 +26,7 @@ source are kept in the file's own metadata (`asset.extras`).
 - At runtime `js/scene.js` also rotates, rescales and recentres the model, and
   lights it. The geometry is unchanged.
 
-The credit is also shown in the page footer (`js/app.js`).
+The credit is shown on the site's Credits page (`#/credits`), linked from the footer (`js/app.js`).
 The original author is not affiliated with, and does not endorse, this site.
 
 ## Software
