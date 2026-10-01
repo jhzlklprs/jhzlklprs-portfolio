@@ -165,6 +165,8 @@ export function mountComputer(host, modelUrl, onError) {
   controls.enableZoom = false;
   controls.enablePan = false;
   controls.enabled = !coarse; // touch: swipe scrolls the page instead
+  // OrbitControls forces touch-action:none when it connects, which blocks page scrolling over the canvas on phones; restore it
+  renderer.domElement.style.touchAction = coarse ? "auto" : "pan-y";
   controls.minPolarAngle = Math.PI / 2.4;
   controls.maxPolarAngle = Math.PI / 2.05;
   controls.update();
