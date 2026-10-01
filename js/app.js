@@ -377,7 +377,7 @@ function reveal() {
 
 $("#nav").innerHTML = S.navLinks.map((l) => `<a href="#${l.href}">${l.label}</a>`).join("") + `<a href="#/contact">Contact</a>`;
 $("#foot").innerHTML = `<span class="mono muted">© ${new Date().getFullYear()} ${esc(P.name)}</span>
-  <span>${link(P.socials.github, "GitHub")} ${link(P.socials.linkedin, "LinkedIn")} <a class="ext" href="mailto:${P.email}">Email</a></span>
+  <span class="mono">${link(P.socials.github, "GitHub")} ${link(P.socials.linkedin, "LinkedIn")} <a class="ext" href="mailto:${P.email}">Email</a></span>
   <span class="mono muted"><a class="ext" href="#/credits">Credits</a></span>`;
 document.addEventListener("visibilitychange", () => scene && (document.hidden ? scene.stop() : scene.start()));
 addEventListener("hashchange", render);

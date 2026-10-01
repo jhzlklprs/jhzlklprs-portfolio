@@ -1,15 +1,14 @@
 /* ============================================================
    pages.css — layout of the finished portfolio, ported onto the
-   single-page router. Loaded AFTER style.css; the home hero rules
-   in style.css are not touched.
+   single-page router.
    ============================================================ */
 :root{
   --accent:var(--lavender);--accent-dim:rgba(139,124,246,.55);--accent-soft:rgba(139,124,246,.1);
-  --border:var(--line);--border-soft:#1a1f24;--text:var(--bone);--text-dim:var(--muted);--text-dimmer:#5c6169;
+  --border:var(--line);--border-soft:#1a1b25;--text:var(--bone);--text-dim:var(--muted);--text-dimmer:#62657a;
   --bg:var(--night);--bg2:var(--surface);--mono:"Geist Mono",ui-monospace,monospace;--maxw:72rem;
   --project-max:1160px;--project-accent:var(--lavender);--project-border:var(--border-soft);--project-muted:#858a91;--project-panel:var(--surface);--project-bg:var(--night);
   --work-max:1152px;--work-accent:var(--lavender);--work-border:var(--border-soft);--work-muted:#858a91;--work-bg:var(--night);--work-panel:var(--surface);
-  --cs-text:#ede8dc;--cs-body:rgba(237,232,220,.86);--cs-lead:rgba(237,232,220,.74);--cs-dim:#8a8f98;--cs-dimmer:#5c6169;--cs-line:#1f242b;--cs-accent:var(--lavender);
+  --cs-text:#ecebf3;--cs-body:rgba(236,235,243,.86);--cs-lead:rgba(236,235,243,.74);--cs-dim:#8d90a4;--cs-dimmer:#62657a;--cs-line:#20222e;--cs-accent:var(--lavender);
   --cs-mono:"Geist Mono",ui-monospace,monospace;--cs-sans:"Hanken Grotesk",system-ui,sans-serif;--cs-display:"Geist","Hanken Grotesk",system-ui,sans-serif;
 }
 
@@ -60,7 +59,7 @@
 .projects-intro p {
   max-width: 576px;
   margin: 24px 0 0;
-  color: #c7c3ba;
+  color: #c4c3d1;
   font-size: 18px;
   line-height: 1.625;
 }
@@ -622,7 +621,7 @@
 .work-intro .wrap { max-width:var(--work-max); }
 .work-intro h1 { margin:20px 0 0; max-width:850px; font-size:clamp(36px,5vw,48px); line-height:1.03; letter-spacing:-.045em; }
 .work-intro h1 span { color:var(--work-muted); }
-.intro-copy { max-width:576px; margin:24px 0 0; color:#c7c3ba; font-size:18px; line-height:1.625; }
+.intro-copy { max-width:576px; margin:24px 0 0; color:#c4c3d1; font-size:18px; line-height:1.625; }
 
 .experience-section, .work-focus, .work-contact { padding:90px 0; border-top:1px solid var(--work-border); }
 .experience-section { padding:0 0 72px; border-top:0; }
@@ -748,7 +747,7 @@
   line-height: 1.32;
   max-width: 22ch;
   margin-bottom: 28px;
-  color: #ede8dc;
+  color: #ecebf3;
 }
 .about-main .lede p {
   font-size: 15.5px;
@@ -1513,6 +1512,13 @@
 .state-credits{max-width:40rem;margin-top:1.25rem;font-size:.95rem}
 .state-credits p{margin-top:.9rem}.state-credits b{color:var(--bone);font-weight:600}
 .state-credits a{color:var(--lavender-b);text-decoration:underline;text-underline-offset:3px}
+/* credits page: tighter top gap, smaller type, room under the Back home button */
+.state-page:has(.state-credits){padding:6.5rem 0 6rem;min-height:0;align-items:flex-start}
+.state-page:has(.state-credits) .state-term{margin-bottom:1.5rem}
+.state-page:has(.state-credits) h1{font-size:clamp(1.75rem,4vw,2.6rem)}
+.state-page:has(.state-credits) .state-credits{font-size:.9rem;margin-top:1rem}
+.state-page:has(.state-credits) .state-credits p{margin-top:.75rem}
+.state-page:has(.state-credits) .state-actions{margin-top:1.5rem}
 
 /* narrow phones: keep only the JK monogram so the nav links fit on one line */
 @media(max-width:430px){.logo{font-size:0;gap:0}.logo b{font-size:.78rem}}
