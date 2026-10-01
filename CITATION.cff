@@ -6,8 +6,9 @@ authors:
   - family-names: Kiel
     given-names: Jahzeel
     email: jhzlklprs@gmail.com
-    repository-code: "https://github.com/jhzlklprs/jhzlklprs-portfolio"
-    url: "https://jahzeelkiel.vercel.app"
+repository-code: "https://github.com/jhzlklprs/jhzlklprs-portfolio"
+url: "https://jahzeelkiel.vercel.app"
+license-url: "https://github.com/jhzlklprs/jhzlklprs-portfolio/blob/main/LICENSE"
 abstract: >-
   Source for Jahzeel Kiel's personal portfolio: a plain HTML, CSS, and
   JavaScript site with an interactive three.js hero, a single data file that
@@ -18,4 +19,3 @@ keywords:
   - software-developer
   - vanilla-javascript
   - three-js
-# license-url: "https://github.com/<your-username>/<your-repo>/blob/main/LICENSE"

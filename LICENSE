@@ -1,41 +1,38 @@
-Jahzeel Kiel Portfolio License
+Jahzeel Kiel Portfolio: Source-Available License
 
 Copyright (c) 2026 Jahzeel Kiel. All rights reserved.
 
-This repository contains the source code, design, written content, and personal
-branding of Jahzeel Kiel's portfolio website ("the Work").
+In this license, "the Work" means everything original to this repository: the
+code, page designs and layouts, written text, project write-ups, images, the
+portrait, the name "Jahzeel Kiel", and the site's visual identity.
 
-You are welcome to:
+1. Reading and learning
+   You may read and study the Work, and run a copy locally to see how it
+   behaves, for personal or educational purposes.
 
-1. View, read, and study the source code for personal, educational, and
-   reference purposes.
-2. Borrow small, generic code snippets or techniques for your own projects,
-   with attribution where reasonable.
+2. Small borrowings
+   You may reuse short, generic pieces of code or general techniques in your
+   own projects. Please credit me where that is reasonable.
 
-You may not, without prior written permission from Jahzeel Kiel:
+3. Everything else needs my written permission
+   Without it, you may not:
+   (a) publish or deploy the Work, or a substantial part of it, as your own
+       site, portfolio, or product;
+   (b) reuse my text, designs, layouts, images, portrait, or project
+       write-ups;
+   (c) use my name, likeness, or visual identity;
+   (d) sell, sublicense, or redistribute the Work or a substantial part of it.
 
-1. Copy, reproduce, or redeploy the Work, in whole or in substantial part, as
-   your own personal site, portfolio, or product.
-2. Reuse the written content, copy, design, layout, imagery, or personal
-   branding (including the name "Jahzeel Kiel", the visual identity, the
-   portrait, and the project write-ups).
-3. Sell, sublicense, or otherwise distribute the Work or any substantial part
-   of it.
+4. Third-party material
+   The 3D model, three.js, postprocessing, and the fonts belong to their
+   authors and stay under their own licenses, which are listed in CREDITS.md
+   and THIRD-PARTY-LICENSES.txt. This license does not reduce any right those
+   licenses give you.
 
-The name, likeness, written content, and visual identity of Jahzeel Kiel are not
-licensed and remain fully reserved.
+5. Asking for permission
+   Write to jhzlklprs@gmail.com.
 
-Third-party materials are not part of the Work and are not covered by this
-license. This includes the 3D model (CC BY 4.0), three.js, postprocessing, and
-the fonts. They remain under their own licenses, listed in CREDITS.md and
-THIRD-PARTY-LICENSES.txt, and nothing here restricts what those licenses allow.
-
-For permissions beyond the scope of this license, contact
-jhzlklprs@gmail.com.
-
-THE WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
-PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHOR BE LIABLE
-FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE WORK OR THE
-USE OR OTHER DEALINGS IN THE WORK.
+6. No warranty
+   The Work is provided "as is", without warranty of any kind. To the extent
+   the law allows, I am not liable for any claim or damage arising from it or
+   from its use.

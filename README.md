@@ -12,7 +12,7 @@ A hand-written portfolio in plain HTML, CSS, and JavaScript. There is no framewo
 
 ## Highlights
 
-- **A 3D terminal hero.** An IBM 3278 terminal model rendered with three.js, with a canvas-drawn boot screen that uses my name and role. Weak hardware (2 CPU cores or fewer) or a browser without WebGL gets a still poster image instead. The render loop pauses when the hero is offscreen or the tab is hidden.
+- **A 3D terminal hero.** An IBM 3278 terminal model rendered with three.js, with a canvas-drawn status screen that uses my name and role. Visitors with reduced-motion or data-saver turned on, devices with fewer than three CPU cores, and browsers without WebGL see a still image instead. The render loop pauses when the hero is offscreen or the tab is hidden.
 - **One content file.** Profile, about text, experience, skills, and every project live in `js/data.js`. Pages are rendered from it, so adding a project means adding one entry.
 - **Dynamic project pages.** There is a single project template, not one HTML file per project. Routes use the URL hash (`#/projects/<slug>`), so it works on any static host without rewrite rules.
 - **Mailto contact.** The contact form opens the visitor's email client with the message prefilled. There is no server and no data store.
@@ -50,7 +50,7 @@ python3 -m http.server 8000
 
 1. Put a cover image in `assets/projects/<slug>/cover.jpg`.
 2. Add an entry to `projects` in `js/data.js` with a unique `slug`, a `name`, a `stack` list, and the text fields.
-3. To feature it on the home page, add its slug to `FEATURED_ORDER`.
+3. To feature it on the home page, add its slug to `PINNED`.
 
 ## Deploying
 
@@ -62,7 +62,7 @@ Third-party work, including the 3D model (CC BY 4.0), three.js, postprocessing, 
 
 ## License
 
-All rights reserved. See [LICENSE](LICENSE): you may read the source, but please don't redeploy it as your own.
+Source-available, all rights reserved. You can read and learn from the code under the terms in [LICENSE](LICENSE), but please do not publish it as your own site.
 
 ## Citation
 

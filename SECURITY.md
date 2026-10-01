@@ -1,21 +1,22 @@
-# Security Policy
+# Security
 
-This repository powers a personal portfolio site. It is fully static: there is no backend, no authentication, and no user data store. The contact form only opens the visitor's email client through a `mailto:` link. Security reports are still welcome.
+This is a static personal site: HTML, CSS, and JavaScript served from Vercel.
+It has no server code, accounts, or database. The contact form only opens the
+visitor's own email app through a `mailto:` link.
 
-## Reporting a vulnerability
+## Reporting a problem
 
-Please do not open a public issue for security problems.
+Please email jhzlklprs@gmail.com instead of opening a public issue. It helps if
+you include:
 
-Email **jhzlklprs@gmail.com**
+- what you found and where (a URL or a file path);
+- how to reproduce it;
+- what you think the impact is.
 
-- a description of the issue and where it lives (URL or file),
-- steps to reproduce or a proof of concept,
-- the impact you believe it has.
+I will reply as soon as I can, but I am not promising a fixed response time.
+Please test gently: do not access anyone else's data or disrupt the site.
 
-I will acknowledge reports as soon as I can and fix confirmed issues as quickly as the severity warrants. Good-faith research is appreciated. Please avoid privacy violations, data destruction, or service degradation while testing.
+## What this covers
 
-## Scope
-
-In scope: this repository's code and the deployed site jahzeelkiel.vercel.app
-
-Out of scope: third-party services the site links to or loads, such as Google Fonts, GitHub, and Vercel, which run their own disclosure programs.
+This repository and https://jahzeelkiel.vercel.app. Platforms the site relies
+on, such as Vercel and GitHub, have their own reporting channels.

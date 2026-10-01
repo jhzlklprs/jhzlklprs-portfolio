@@ -1,18 +1,23 @@
 # Contributing
 
-This is my personal portfolio, so I am not looking for new features. A few things are welcome:
+This is a personal portfolio, so it is not open to new features, redesigns, or
+dependency-update pull requests. Reports are welcome in two areas:
 
-- **Bugs.** If something is broken, mis-rendered, or behaves oddly, open an issue with steps to reproduce, your browser and OS, and a screenshot if it helps.
-- **Accessibility issues.** Contrast, keyboard traps, screen-reader problems, or reduced-motion regressions.
-- **Security issues.** See [SECURITY.md](SECURITY.md) and email me instead of opening a public issue.
+- **Bugs and accessibility problems.** Open an issue that says what you
+  expected, what happened, your browser and OS, and a screenshot if useful.
+  Contrast, keyboard, screen-reader, and reduced-motion issues all count.
+- **Security problems.** Please follow [SECURITY.md](SECURITY.md) instead of
+  opening a public issue.
 
-Not wanted: redesigns, new features, or dependency-bump PRs.
+## Reusing the code
 
-<!-- TODO: add a sentence about forking and reuse once you pick a LICENSE. -->
+The source is available to read under the terms in [LICENSE](LICENSE). Learning
+from it is fine; publishing it as your own site is not.
 
 ## Running it locally
 
-There is no build step or `npm install`. Serve the folder with any static server (ES modules and the import map need http, not `file://`):
+There is no build step. Serve the folder with any static server, because the
+ES modules and import map do not work from `file://`:
 
 ```bash
 python3 -m http.server 8000
@@ -20,8 +25,9 @@ python3 -m http.server 8000
 
 Then open <http://localhost:8000>.
 
-## Before opening a PR
+## If you send a fix
 
-- Check the pages you touched in a desktop and a mobile viewport.
-- Check the 3D hero still falls back to the poster image when WebGL is unavailable.
-- Keep content changes in `js/data.js` rather than hard-coding them in `js/app.js`.
+- Try the pages you touched at desktop and phone widths.
+- Confirm the hero shows the still image when WebGL is unavailable or when
+  reduced motion is on.
+- Put text changes in `js/data.js` instead of hard-coding them in `js/app.js`.

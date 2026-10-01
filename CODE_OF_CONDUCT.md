@@ -1,9 +1,8 @@
 # Code of Conduct
 
-Be respectful and constructive.
+This project follows the
+[Contributor Covenant, version 2.1](https://www.contributor-covenant.org/version/2/1/code_of_conduct/),
+which is incorporated here by reference. The Covenant is published under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
-Harassment, discrimination, personal attacks, and bad-faith behavior are not welcome in issues, pull requests, or any other space for this project. Assume good intent, keep feedback about the work and not the person, and help keep this a comfortable place to contribute.
-
-Concerns can be reported to jhzlklprs@gmail.com. Reports are handled confidentially. I may remove comments, reject contributions, or block accounts that break this standard.
-
-Adapted in spirit from the [Contributor Covenant](https://www.contributor-covenant.org).
+To report unacceptable behavior, email jhzlklprs@gmail.com.

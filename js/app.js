@@ -29,45 +29,45 @@ const card = (p) => `
 /* ---------- pages ---------- */
 function home() {
   const featured = S.projects.filter((p) => p.featured)
-    .sort((a, b) => S.FEATURED_ORDER.indexOf(a.slug) - S.FEATURED_ORDER.indexOf(b.slug));
+    .sort((a, b) => S.PINNED.indexOf(a.slug) - S.PINNED.indexOf(b.slug));
   const now = S.experiences[0];
   return `
   <section class="hero"><div class="glow"></div>
     <div class="wrap hero-grid">
       <div>
-        <div class="mono muted status"><span class="ping"></span>${esc(P.status.available)}</div>
-        <h1>${esc(P.headline[0])} <span class="lavender">${esc(P.headline[1])}</span></h1>
+        <div class="mono muted status"><span class="live-dot"></span>${esc(P.position.availability)}</div>
+        <h1>${esc(P.heroLines[0])} <span class="lavender">${esc(P.heroLines[1])}</span></h1>
         <p class="lead dim">${rich(P.intro)}</p>
         <div class="cta-row">
-          <a class="cta" href="#/projects">See the work →</a>
-          <a class="mono muted ext" href="${P.resumeFile}" target="_blank" rel="noopener">Résumé ${arrow}</a>
+          <a class="cta" href="#/projects">Browse projects →</a>
+          <a class="mono muted ext" href="${P.resumeFile}" target="_blank" rel="noopener">Resume (PDF) ${arrow}</a>
         </div>
       </div>
       <div class="device" id="device" role="img" aria-label="Interactive 3D IBM 3278 terminal"></div>
     </div>
   </section>
 
+  <section class="band"><div class="wrap between">
+    <div><p class="eyebrow">right now</p><h2 class="sm">${esc(now.role)} at ${esc(now.company)}.</h2><p class="dim narrow">${esc(now.summary)}</p></div>
+    <a class="mono muted ext" href="#/work">Full work history ${arrow}</a>
+  </div></section>
+
   <section class="band"><div class="wrap">
-    <div class="between"><div><p class="eyebrow">selected work</p><h2>Things people actually use.</h2></div>
-      <a class="mono muted ext" href="#/projects">All projects ${arrow}</a></div>
+    <p class="eyebrow">focus areas</p>
+    <div class="caps">${S.capabilities.map((c) => `
+      <div class="cap reveal"><h3><span class="mono lavender">▸</span>${esc(c.title)}</h3><p class="dim">${esc(c.body)}</p></div>`).join("")}</div>
+  </div></section>
+
+  <section class="band"><div class="wrap">
+    <div class="between"><div><p class="eyebrow">recent projects</p><h2>Systems the business runs on.</h2></div>
+      <a class="mono muted ext" href="#/projects">View all projects ${arrow}</a></div>
     <div class="grid3">${featured.map(card).join("")}</div>
   </div></section>
 
-  <section class="band"><div class="wrap">
-    <p class="eyebrow">what I do</p>
-    <div class="caps">${S.capabilities.map((c, i) => `
-      <div class="cap reveal"><h3><span class="mono lavender">${String(i + 1).padStart(2, "0")}</span>${esc(c.title)}</h3><p class="dim">${esc(c.body)}</p></div>`).join("")}</div>
-  </div></section>
-
-  <section class="band"><div class="wrap between">
-    <div><p class="eyebrow">currently</p><h2 class="sm">${esc(now.role)} at ${esc(now.company)}.</h2><p class="dim narrow">${esc(now.summary)}</p></div>
-    <a class="mono muted ext" href="#/work">See the full path ${arrow}</a>
-  </div></section>
-
   <section class="band center"><div class="wrap">
-    <h2>Have something worth building?</h2>
+    <h2>Got a system that needs work?</h2>
     <p class="dim">${esc(P.cta)}</p>
-    <a class="cta" href="#/contact">Get in touch</a>
+    <a class="cta" href="#/contact">Contact me</a>
   </div></section>`;
 }
 
@@ -122,7 +122,7 @@ function projects() {
   return `<div class="pg">
   <section class="projects-intro"><div class="wrap projects-intro-inner">
     <div class="eyebrow">Projects</div>
-    <h1>Things I've built, <span>end to end.</span></h1>
+    <h1>Selected projects, <span>in detail.</span></h1>
     <p>Web applications, internal business systems, and tools built around real workflows. Each project is a chance to turn requirements into something useful, maintainable, and ready for people to use.</p>
   </div></section>
 
@@ -163,7 +163,7 @@ function project(slug) {
   const back = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M10 6H2M5.5 2.5L2 6l3.5 3.5"/></svg>`;
   const hasSide = (p.highlights && p.highlights.length) || (p.stack && p.stack.length);
   return `<div class="pg"><div class="wrap case-page">
-    <a class="case-back" href="#/projects">${back}All projects</a>
+    <a class="case-back" href="#/projects">${back}Back to projects</a>
     <div class="case-meta-line"><span class="yr">${p.year}</span>${p.tagline ? `<span class="rule"></span><span>${esc(p.tagline)}</span>` : ""}${p.status ? `<span class="rule"></span><span class="state">● ${esc(p.status)}</span>` : ""}</div>
     <h1 class="case-title">${esc(p.name)}</h1>
     <p class="case-lead">${esc(p.summary)}</p>
@@ -212,7 +212,7 @@ function work() {
     <div class="eyebrow">Next</div>
     <h2>Have a system to build<br><span>or improve?</span></h2>
     <p>I'm interested in practical software work where development, systems, and business requirements meet.</p>
-    <a class="contact-link" href="#/contact">Get in touch <span>↗</span></a>
+    <a class="contact-link" href="#/contact">Contact me <span>↗</span></a>
   </div></section>
   </div>`;
 }
@@ -327,28 +327,27 @@ function privateSystem(slug) {
   if (!p) return notFound();
   return screen("internal." + p.slug, `${esc(p.name)} is an internal system.`,
     ["> connect " + p.slug, "> network ...... private", "> access ........ restricted", "> status ........ not publicly available"],
-    `<a class="cta" href="#/projects/${p.slug}">Read the case study</a><a class="mono muted ext" href="#/projects">All projects ${arrow}</a>`,
+    `<a class="cta" href="#/projects/${p.slug}">Read the case study</a><a class="mono muted ext" href="#/projects">View all projects ${arrow}</a>`,
     `<p class="dim">It runs inside a company network, so there's no public demo. The case study covers what it does, how it's built, and screenshots of the real interface.</p>`);
 }
 
-/* ---------- boot log (hero) ---------- */
-function boot() {
-  const el = $("#boot"); if (!el) return;
-  const lines = [`> boot ${P.handle}`, "> mounting stack ........ ok", `> ${P.status.label} @ ${P.status.org} ....... ok`, "> ready_"];
-  let i = 0, j = 0;
-  (function type() {
-    if (!el.isConnected || i >= lines.length) return;
-    el.textContent = lines.slice(0, i).join("\n") + (i ? "\n" : "") + lines[i].slice(0, ++j);
-    if (j >= lines[i].length) { i++; j = 0; setTimeout(type, 260); } else setTimeout(type, 22);
-  })();
+/* ---------- 3D hero ---------- */
+// Decide whether to run the live 3D hero or show a still image instead.
+function heroMode() {
+  const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const saver = !!(navigator.connection && navigator.connection.saveData);
+  const cores = navigator.hardwareConcurrency || 4;
+  return calm || saver || cores < 3 ? "still" : "live";
 }
 
-/* ---------- 3D hero ---------- */
 function mount3d() {
   const host = $("#device"); if (!host) return;
-  const poster = () => { host.innerHTML = '<img class="poster" src="assets/hero-poster.webp" alt="A 3D render of an IBM 3278 terminal">'; host.classList.add("fallback"); };
-  if ((navigator.hardwareConcurrency ?? 8) <= 2) return poster(); // weak hardware gets the still
-  try { scene = mountComputer(host, "models/ibm_3278.glb", poster); } catch (err) { console.warn("WebGL unavailable", err); return poster(); }
+  const showStill = () => {
+    host.innerHTML = '<img class="still" src="assets/terminal-still.webp" alt="A 3D render of an IBM 3278 terminal">';
+    host.classList.add("fallback");
+  };
+  if (heroMode() === "still") return showStill();
+  try { scene = mountComputer(host, "models/ibm_3278.glb", showStill); } catch (err) { console.warn("WebGL unavailable", err); return showStill(); }
   scene.start(); // hero is above the fold: start loading + rendering immediately
   const io = new IntersectionObserver(([e]) => scene && (e.isIntersecting && !document.hidden ? scene.start() : scene.stop()), { rootMargin: "200px 0px" });
   io.observe(host);
@@ -369,7 +368,7 @@ function render() {
   document.title = key ? `${key[0].toUpperCase() + key.slice(1)} · ${P.name}` : `${P.name} · ${P.role}`;
   document.querySelectorAll("#nav a").forEach((l) => l.classList.toggle("on", l.getAttribute("href") === "#/" + key));
   window.scrollTo({ top: 0, left: 0, behavior: "instant" }); // instant: html has scroll-behavior:smooth
-  boot(); mount3d(); reveal(); bindContact();
+  mount3d(); reveal(); bindContact();
 }
 function reveal() {
   const io = new IntersectionObserver((es) => es.forEach((e) => e.isIntersecting && (e.target.classList.add("in"), io.unobserve(e.target))), { threshold: 0.12 });

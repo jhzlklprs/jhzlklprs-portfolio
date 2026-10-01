@@ -1,7 +1,7 @@
 window.SITE={
  "profile": {
   "name": "Jahzeel Kiel",
-  "handle": "jahzeel.kiel",
+  "handle": "jhzlklprs",
   "role": ".NET Developer",
   "location": "Lucena City, Philippines",
   "email": "jhzlklprs@gmail.com",
@@ -12,19 +12,18 @@ window.SITE={
    "github": "https://github.com/jhzlklprs",
    "linkedin": "https://www.linkedin.com/in/jhzlklprs/"
   },
-  "status": {
-   "label": "System Programmer I",
-   "org": "RPI",
-   "note": "",
-   "available": "Open to software roles"
+  "position": {
+   "title": "System Programmer I",
+   "employer": "RPI",
+   "availability": "Open to .NET roles"
   },
-  "headline": [
+  "heroLines": [
    ".NET developer.",
    "Building for the business."
   ],
   "intro": "I build desktop and web applications with **VB.NET, ASP.NET, and SQL Server**, internal systems that support day-to-day business operations.",
-  "cta": "Open to .NET development opportunities and meaningful problems worth solving well.",
-  "contactLead": "Open to .NET development opportunities, useful systems, and hard problems. The fastest way to reach me is right here."
+  "cta": "Open to .NET development roles. If you have an internal system to build or keep running, I would like to hear about it.",
+  "contactLead": "Open to .NET development roles and systems work. The fastest way to reach me is right here."
  },
  "about": {
   "lead": "I build the internal tools a business quietly depends on.",
@@ -323,8 +322,8 @@ window.SITE={
    "slug": "personal-portfolio",
    "name": "Personal Portfolio",
    "tagline": "Developer portfolio",
-   "oneLiner": "A developer portfolio built from scratch with HTML, CSS, JavaScript, and three.js, featuring an interactive 3D terminal and a data-driven case-study template.",
-   "summary": "The site you're on: a developer portfolio built from scratch to show .NET and business-systems work, with no framework and no build step.",
+   "oneLiner": "A developer portfolio hand-written with HTML, CSS, JavaScript, and three.js, featuring an interactive 3D terminal and a data-driven case-study template.",
+   "summary": "The site you're on: a developer portfolio hand-written to show .NET and business-systems work, with no framework and no build step.",
    "detail": "This portfolio is the project I'm working on right now. It presents my .NET and business-systems work in one place, built with plain HTML, CSS, and JavaScript instead of a template or framework.\n\nThe hero is an interactive 3D IBM terminal rendered with three.js, with a boot screen showing my name and role. Weak devices and browsers without WebGL get a still image instead, and rendering pauses when the hero is off screen.\n\nEvery case study renders from a single template and one data file, so adding a project means adding an entry rather than building a new page. Pages use hash-based routes, so the site deploys to any static host with no server setup.\n\nIt is still evolving: new case studies, screenshots, and content are added as each project gets documented.",
    "highlights": [
     "Interactive 3D terminal hero built with three.js, with a still-image fallback for weak devices and browsers without WebGL",
@@ -469,7 +468,7 @@ window.SITE={
    "label": "About"
   }
  ],
- "FEATURED_ORDER": [
+ "PINNED": [
   "preventive-maintenance",
   "jewelry-pawning-purpose",
   "hotel-rosita"
