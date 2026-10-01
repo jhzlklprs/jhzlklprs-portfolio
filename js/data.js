@@ -4,13 +4,13 @@ window.SITE={
   "handle": "jahzeel.kiel",
   "role": ".NET Developer",
   "location": "Lucena City, Philippines",
-  "email": "hello@example.com",
+  "email": "jhzlklprs@gmail.com",
   "phoneDisplay": "",
   "phoneHref": "",
-  "resumeFile": "/assets/docs/resume.pdf",
+  "resumeFile": "assets/docs/resume.pdf",
   "socials": {
-   "github": "https://github.com",
-   "linkedin": "https://linkedin.com"
+   "github": "https://github.com/jhzlklprs",
+   "linkedin": "https://www.linkedin.com/in/jhzlklprs/"
   },
   "status": {
    "label": "System Programmer I",
@@ -326,19 +326,20 @@ window.SITE={
    "slug": "personal-portfolio",
    "name": "Personal Portfolio",
    "tagline": "Developer portfolio",
-   "oneLiner": "A developer portfolio built from scratch with HTML, CSS, and JavaScript, with a data-driven case-study template and keyboard search.",
+   "oneLiner": "A developer portfolio built from scratch with HTML, CSS, JavaScript, and three.js, featuring an interactive 3D terminal and a data-driven case-study template.",
    "summary": "The site you're on: a developer portfolio built from scratch to show .NET and business-systems work, with no framework and no build step.",
-   "detail": "This portfolio is the project I'm working on right now. It presents my .NET and business-systems work in one place, built with plain HTML, CSS, and JavaScript instead of a template or framework.\n\nEvery case study renders from a single template and one data file, so adding a project means adding an entry rather than building a new page. A keyboard-driven search palette (*Ctrl K*) jumps to any page, project, or action.\n\nIt is still evolving: new case studies, screenshots, and content are added as each project gets documented.",
+   "detail": "This portfolio is the project I'm working on right now. It presents my .NET and business-systems work in one place, built with plain HTML, CSS, and JavaScript instead of a template or framework.\n\nThe hero is an interactive 3D IBM terminal rendered with three.js, with a boot screen showing my name and role. Weak devices and browsers without WebGL get a still image instead, and rendering pauses when the hero is off screen.\n\nEvery case study renders from a single template and one data file, so adding a project means adding an entry rather than building a new page. Pages use hash-based routes, so the site deploys to any static host with no server setup.\n\nIt is still evolving: new case studies, screenshots, and content are added as each project gets documented.",
    "highlights": [
+    "Interactive 3D terminal hero built with three.js, with a still-image fallback for weak devices and browsers without WebGL",
     "One case-study template driven by a single data file, instead of a separate page per project",
-    "Command-palette search that jumps to any page, project, or action",
-    "Dark, responsive layout with shared navigation and footer across every page",
+    "Dark, responsive layout with shared navigation and footer across every page, plus a skip link and reduced-motion support",
     "No framework and no build step: plain files that deploy as a static site"
    ],
    "stack": [
     "HTML",
     "CSS",
-    "JavaScript"
+    "JavaScript",
+    "three.js"
    ],
    "year": "2026",
    "status": "In progress",

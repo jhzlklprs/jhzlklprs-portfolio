@@ -2,33 +2,29 @@
 
 ## 3D model
 
-**"Retro computer"** by **Urpo**
+**"IBM 3278 terminal"** by **maxdragonn**
 
-- Source: https://skfb.ly/ou69O
-  (https://sketchfab.com/3d-models/retro-computer-f844c0357d284fd8baa1435e9ff31bb2)
-- Author: https://sketchfab.com/Urpo
+- Source: https://skfb.ly/6XW9w
+  (https://sketchfab.com/3d-models/ibm-3278-terminal-b0470478089a4462afb4d5c4dd827b22)
+- Author: https://sketchfab.com/maxdragon
 - License: Creative Commons Attribution 4.0 International (CC BY 4.0)
   http://creativecommons.org/licenses/by/4.0/
 
 Suggested credit (as provided by Sketchfab):
 
-> "Retro computer" (https://skfb.ly/ou69O) by Urpo is licensed under
+> "IBM 3278 terminal" (https://skfb.ly/6XW9w) by maxdragonn is licensed under
 > Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 
 ### Changes made to the original (CC BY 4.0 requires stating these)
 
-The modified file is `models/retro_computer.glb`. The original author, license
-and source are kept in the file's own metadata (`asset.extras`).
+The modified file is `models/ibm_3278.glb`. The original author, license and
+source are kept in the file's own metadata (`asset.extras`).
 
-- Geometry was simplified: the triangle count was reduced by roughly a quarter
-  (about 56,000 to about 43,000), and the vertex data was quantized
-  (`KHR_mesh_quantization`) to reduce file size. The overall shape is unchanged.
-- Textures were re-encoded from PNG/JPEG to WebP (`EXT_texture_webp`).
-- The screen's emissive texture was edited so the screen glows with custom text
-  instead of the original placeholder text.
-- At runtime, `js/scene.js` renders the materials as opaque (the file itself
-  still marks them `alphaMode: BLEND`), recentres and rescales the model, and
-  lights it. No other changes are made to the model in the browser.
+- The screen's baked-in artwork (its colour and emissive textures) was removed
+  from the file. At runtime, `js/scene.js` replaces the screen material with a
+  canvas-drawn terminal display (emissive, with scanlines).
+- At runtime `js/scene.js` also rotates, rescales and recentres the model, and
+  lights it. The geometry is unchanged.
 
 The credit is also shown in the page footer (`js/app.js`).
 The original author is not affiliated with, and does not endorse, this site.
@@ -37,5 +33,7 @@ The original author is not affiliated with, and does not endorse, this site.
 
 - [three.js](https://threejs.org) r170 (MIT License), bundled in `vendor/`,
   including its `GLTFLoader`, `OrbitControls` and `BufferGeometryUtils` add-ons.
-- Fonts loaded from Google Fonts: Geist, Geist Mono and Hanken Grotesk
-  (SIL Open Font License 1.1).
+- Fonts, self-hosted in `assets/fonts/`: [Geist](https://github.com/vercel/geist-font) and Geist Mono (Copyright 2024 The Geist Project Authors) and [Hanken Grotesk](https://github.com/marcologous/hanken-grotesk) (Copyright 2021 The Hanken Grotesk Project Authors). SIL Open Font License 1.1; the licence text is in `assets/fonts/OFL.txt`.
+- Full licence texts for these libraries are in `THIRD-PARTY-LICENSES.txt`.
+- [postprocessing](https://github.com/pmndrs/postprocessing) (Zlib License), bundled as
+  `vendor/postprocessing.bundle.js` for the bloom, vignette and contrast effects.

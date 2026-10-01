@@ -36,15 +36,14 @@ function home() {
     <div class="wrap hero-grid">
       <div>
         <div class="mono muted status"><span class="ping"></span>${esc(P.status.available)}</div>
-        <h1>${esc(P.headline[0])} <span class="ember">${esc(P.headline[1])}</span></h1>
+        <h1>${esc(P.headline[0])} <span class="lavender">${esc(P.headline[1])}</span></h1>
         <p class="lead dim">${rich(P.intro)}</p>
         <div class="cta-row">
           <a class="cta" href="#/projects">See the work →</a>
           <a class="mono muted ext" href="${P.resumeFile}" target="_blank" rel="noopener">Résumé ${arrow}</a>
         </div>
-        <pre class="boot mono" id="boot" aria-label="boot log"></pre>
       </div>
-      <div class="device" id="device" role="img" aria-label="Interactive 3D retro computer"></div>
+      <div class="device" id="device" role="img" aria-label="Interactive 3D IBM 3278 terminal"></div>
     </div>
   </section>
 
@@ -57,7 +56,7 @@ function home() {
   <section class="band"><div class="wrap">
     <p class="eyebrow">what I do</p>
     <div class="caps">${S.capabilities.map((c, i) => `
-      <div class="cap reveal"><h3><span class="mono ember">${String(i + 1).padStart(2, "0")}</span>${esc(c.title)}</h3><p class="dim">${esc(c.body)}</p></div>`).join("")}</div>
+      <div class="cap reveal"><h3><span class="mono lavender">${String(i + 1).padStart(2, "0")}</span>${esc(c.title)}</h3><p class="dim">${esc(c.body)}</p></div>`).join("")}</div>
   </div></section>
 
   <section class="band"><div class="wrap between">
@@ -84,8 +83,8 @@ const concept = {
     <div class="small-ledger-ui"><b>Ledger</b><em>Performance overview</em>
       <svg viewBox="0 0 200 70" preserveAspectRatio="none" aria-hidden="true">
         <line x1="0" y1="17" x2="200" y2="17" stroke="rgba(255,255,255,.06)"/><line x1="0" y1="35" x2="200" y2="35" stroke="rgba(255,255,255,.06)"/><line x1="0" y1="53" x2="200" y2="53" stroke="rgba(255,255,255,.06)"/>
-        <polygon points="0,62 28,50 52,55 82,34 112,42 146,20 200,8 200,70 0,70" fill="rgba(217,102,61,.10)"/>
-        <polyline points="0,62 28,50 52,55 82,34 112,42 146,20 200,8" fill="none" stroke="#d9663d" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+        <polygon points="0,62 28,50 52,55 82,34 112,42 146,20 200,8 200,70 0,70" fill="rgba(139,124,246,.10)"/>
+        <polyline points="0,62 28,50 52,55 82,34 112,42 146,20 200,8" fill="none" stroke="#8b7cf6" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
       </svg></div>`,
 };
 
@@ -218,7 +217,7 @@ function work() {
 
 /* ---------- About ---------- */
 function about() {
-  const dots = ["var(--ember)", "#8ab4ff", "#5fd97a", "#f2c94c"];
+  const dots = ["var(--lavender)", "#8ab4ff", "#5fd97a", "#f2c94c"];
   return `<div class="pg">
   <section class="about-wrap-outer"><div class="wrap">
     <div class="eyebrow">About</div>
@@ -312,9 +311,9 @@ function boot() {
 /* ---------- 3D hero ---------- */
 function mount3d() {
   const host = $("#device"); if (!host) return;
-  const poster = () => { host.innerHTML = '<img class="poster" src="assets/hero-poster.webp" alt="A 3D render of a retro desktop computer">'; host.classList.add("fallback"); };
+  const poster = () => { host.innerHTML = '<img class="poster" src="assets/hero-poster.webp" alt="A 3D render of an IBM 3278 terminal">'; host.classList.add("fallback"); };
   if ((navigator.hardwareConcurrency ?? 8) <= 2) return poster(); // weak hardware gets the still
-  try { scene = mountComputer(host, "models/retro_computer.glb", poster); } catch (err) { console.warn("WebGL unavailable", err); return poster(); }
+  try { scene = mountComputer(host, "models/ibm_3278.glb", poster); } catch (err) { console.warn("WebGL unavailable", err); return poster(); }
   scene.start(); // hero is above the fold: start loading + rendering immediately
   const io = new IntersectionObserver(([e]) => scene && (e.isIntersecting && !document.hidden ? scene.start() : scene.stop()), { rootMargin: "200px 0px" });
   io.observe(host);
@@ -322,17 +321,19 @@ function mount3d() {
 }
 
 /* ---------- router ---------- */
+// the page is built by JS, so let us own scroll position: otherwise the browser restores the old offset after load
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 const routes = { "": home, projects, work, about, contact };
 function render() {
   document.querySelectorAll(".device").forEach((d) => d._io && d._io.disconnect());
-  scene && scene.stop(); scene = null;
+  scene && (scene.dispose ? scene.dispose() : scene.stop()); scene = null;
   const [, a, b] = location.hash.replace(/^#/, "").split("/"); // "#/projects/slug" -> ["", "projects", "slug"]
   const key = a || "";
   const html = key === "projects" && b ? project(b) : routes[key] ? routes[key]() : notFound();
   const m = $("#main"); m.innerHTML = `<div class="page-in">${html}</div>`;
   document.title = key ? `${key[0].toUpperCase() + key.slice(1)} · ${P.name}` : `${P.name} · ${P.role}`;
   document.querySelectorAll("#nav a").forEach((l) => l.classList.toggle("on", l.getAttribute("href") === "#/" + key));
-  window.scrollTo(0, 0);
+  window.scrollTo({ top: 0, left: 0, behavior: "instant" }); // instant: html has scroll-behavior:smooth
   boot(); mount3d(); reveal(); bindContact();
 }
 function reveal() {
@@ -343,7 +344,7 @@ function reveal() {
 $("#nav").innerHTML = S.navLinks.map((l) => `<a href="#${l.href}">${l.label}</a>`).join("") + `<a href="#/contact">Contact</a>`;
 $("#foot").innerHTML = `<span class="mono muted">© ${new Date().getFullYear()} ${esc(P.name)}</span>
   <span>${link(P.socials.github, "GitHub")} ${link(P.socials.linkedin, "LinkedIn")} <a class="ext" href="mailto:${P.email}">Email</a></span>
-  <span class="credit mono muted">3D model <a href="https://skfb.ly/ou69O" target="_blank" rel="noopener noreferrer">&ldquo;Retro computer&rdquo;</a> by <a href="https://sketchfab.com/Urpo" target="_blank" rel="noopener noreferrer">Urpo</a>, licensed <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>. Modified: see CREDITS.md.</span>`;
+  <span class="credit mono muted">3D model <a href="https://skfb.ly/6XW9w" target="_blank" rel="noopener noreferrer">&ldquo;IBM 3278 terminal&rdquo;</a> by <a href="https://sketchfab.com/maxdragon" target="_blank" rel="noopener noreferrer">maxdragonn</a>, licensed <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>. Modified: <a href="CREDITS.md" target="_blank" rel="noopener noreferrer">see credits</a>.</span>`;
 document.addEventListener("visibilitychange", () => scene && (document.hidden ? scene.stop() : scene.start()));
 addEventListener("hashchange", render);
 render();

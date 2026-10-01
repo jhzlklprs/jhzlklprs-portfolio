@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you reference this project or its source, please cite it as below."
+title: "Jahzeel Kiel Portfolio"
+type: software
+authors:
+  - family-names: Kiel
+    given-names: Jahzeel
+    email: jhzlklprs@gmail.com
+    repository-code: "https://github.com/jhzlklprs/jhzlklprs-portfolio"
+    url: "https://jahzeelkiel.vercel.app"
+abstract: >-
+  Source for Jahzeel Kiel's personal portfolio: a plain HTML, CSS, and
+  JavaScript site with an interactive three.js hero, a single data file that
+  drives every page, and content covering his .NET and SQL Server work.
+keywords:
+  - portfolio
+  - dotnet
+  - software-developer
+  - vanilla-javascript
+  - three-js
+# license-url: "https://github.com/<your-username>/<your-repo>/blob/main/LICENSE"
