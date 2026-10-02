@@ -1,38 +1,27 @@
-Jahzeel Kiel Portfolio: Source-Available License
-
 Copyright (c) 2026 Jahzeel Kiel. All rights reserved.
 
-In this license, "the Work" means everything original to this repository: the
-code, page designs and layouts, written text, project write-ups, images, the
-portrait, the name "Jahzeel Kiel", and the site's visual identity.
+This repository is the source of my personal portfolio website. Unless a file
+or a section below says otherwise, everything in it is my own work: the code,
+the layout and styling, the written text, the case studies, the logo mark, my
+name and my portrait.
 
-1. Reading and learning
-   You may read and study the Work, and run a copy locally to see how it
-   behaves, for personal or educational purposes.
+YOU MAY
+  - Open the site and read the source.
+  - Run a copy on your own machine to see how it works.
+  - Quote a short passage with credit and a link back to this site.
+  - Learn techniques from the code and apply them in your own, different work.
 
-2. Small borrowings
-   You may reuse short, generic pieces of code or general techniques in your
-   own projects. Please credit me where that is reasonable.
+YOU MAY NOT, WITHOUT MY WRITTEN PERMISSION
+  - Publish, host or distribute this site, or a large part of it, as your own.
+  - Reuse my text, case studies, images, portrait, name or logo.
+  - Present your work as made by me, or as endorsed by me.
 
-3. Everything else needs my written permission
-   Without it, you may not:
-   (a) publish or deploy the Work, or a substantial part of it, as your own
-       site, portfolio, or product;
-   (b) reuse my text, designs, layouts, images, portrait, or project
-       write-ups;
-   (c) use my name, likeness, or visual identity;
-   (d) sell, sublicense, or redistribute the Work or a substantial part of it.
+NOT MINE
+  - The 3D model, three.js, postprocessing and the fonts are other people's
+    work and keep their own licenses. See CREDITS.md and
+    THIRD-PARTY-LICENSES.txt.
+  - Company, client and product names shown in case studies belong to their
+    owners. Their appearance here does not grant you any right to them.
 
-4. Third-party material
-   The 3D model, three.js, postprocessing, and the fonts belong to their
-   authors and stay under their own licenses, which are listed in CREDITS.md
-   and THIRD-PARTY-LICENSES.txt. This license does not reduce any right those
-   licenses give you.
-
-5. Asking for permission
-   Write to jhzlklprs@gmail.com.
-
-6. No warranty
-   The Work is provided "as is", without warranty of any kind. To the extent
-   the law allows, I am not liable for any claim or damage arising from it or
-   from its use.
+The site is provided as is, with no warranty. To ask for permission, write to
+jhzlklprs@gmail.com.

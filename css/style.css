@@ -114,3 +114,21 @@ em{font-style:normal;color:var(--lavender)}
 @media(max-width:640px){#nav a:last-child{padding:.25rem .6rem}}
 @media(min-width:1024px){.hero-grid{min-height:min(100dvh,52rem);padding-block:7rem 3rem}}
 @media(min-width:1600px){.wrap{width:min(80rem,100%)}}
+
+/* recent projects: row list */
+.prows{margin-top:2.5rem;border-top:1px solid var(--line)}
+.prow{display:grid;grid-template-columns:15rem minmax(0,1fr) auto;gap:1.5rem 2.25rem;align-items:start;padding:2rem 0;border-bottom:1px solid var(--line)}
+.prow-browser:hover{transform:none;border-color:rgba(var(--lavender-rgb),.5);box-shadow:0 20px 50px -25px rgba(var(--lavender-rgb),.35)}
+.prow-browser .browser-bar{height:26px;padding:0 9px;gap:5px}
+.prow-browser .browser-dot{width:6px;height:6px}
+.prow-browser .browser-url{margin-left:6px;font-size:9px}
+.prow-body h3{font-size:1.2rem;letter-spacing:-.02em}
+.prow-body h3 a{transition:color .2s}.prow-body h3 a:hover{color:var(--lavender)}
+.prow-body>p.dim{margin-top:.5rem;max-width:34rem;font-size:.97rem;line-height:1.55}
+.prow-body .tags{margin-top:1rem}
+.prow-year{padding-top:.2rem}
+@media(max-width:720px){
+  .prow{grid-template-columns:minmax(0,1fr);gap:1.1rem;padding:1.5rem 0}
+  .prow-year{order:-1;padding:0}
+}
+@media(prefers-reduced-motion:reduce){.prow-browser,.prow-browser img{transition:none}}

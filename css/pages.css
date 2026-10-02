@@ -113,7 +113,7 @@
 
 .project-browser:hover {
   transform: translateY(-5px);
-  border-color: rgba(255,116,72,.35);
+  border-color: rgba(var(--lavender-rgb),.35);
   box-shadow: 0 35px 90px rgba(0,0,0,.35);
 }
 
@@ -269,7 +269,7 @@
   place-items: center;
   padding: 35px;
   background:
-    radial-gradient(circle at 50% 50%, rgba(255,116,72,.11), transparent 55%),
+    radial-gradient(circle at 50% 50%, rgba(var(--lavender-rgb),.11), transparent 55%),
     #101214;
 }
 
@@ -348,7 +348,7 @@
 
 .small-project:hover .small-shot {
   transform: translateY(-4px);
-  border-color: rgba(255,116,72,.3);
+  border-color: rgba(var(--lavender-rgb),.3);
 }
 
 .small-project-title {
@@ -509,7 +509,7 @@
 
 .small-ledger {
   background:
-    radial-gradient(circle at 70% 30%, rgba(255,116,72,.08), transparent 45%),
+    radial-gradient(circle at 70% 30%, rgba(var(--lavender-rgb),.08), transparent 45%),
     #0d0f11;
 }
 
@@ -1004,7 +1004,7 @@
 
 .contact-orbit {
   position: absolute;
-  border: 1px solid rgba(255,122,69,.22);
+  border: 1px solid rgba(var(--lavender-rgb),.22);
   border-radius: 50%;
 }
 
@@ -1058,7 +1058,7 @@
   border: 1px solid #444a52;
   border-radius: 6px;
   background: #111316;
-  color: #f0eee8;
+  color: var(--bone);
   outline: none;
   font: 15px/1.5 "Hanken Grotesk", sans-serif;
   transition: border-color .18s ease, box-shadow .18s ease;
@@ -1082,8 +1082,8 @@
 
 .contact-form-card input:focus,
 .contact-form-card textarea:focus {
-  border-color: rgba(255,122,69,.72);
-  box-shadow: 0 0 0 3px rgba(255,122,69,.08);
+  border-color: rgba(var(--lavender-rgb),.72);
+  box-shadow: 0 0 0 3px rgba(var(--lavender-rgb),.08);
 }
 
 .contact-form-actions {
@@ -1098,17 +1098,17 @@
   gap: 13px;
   min-height: 46px;
   padding: 0 18px;
-  border: 1px solid rgba(255,122,69,.5);
+  border: 1px solid rgba(var(--lavender-rgb),.5);
   border-radius: 6px;
-  background: rgba(255,122,69,.06);
-  color: #f0eee8;
+  background: rgba(var(--lavender-rgb),.06);
+  color: var(--bone);
   cursor: pointer;
   font: 600 14px/1 "Hanken Grotesk", sans-serif;
   transition: background .18s ease, border-color .18s ease, transform .18s ease;
 }
 
 .contact-submit:hover {
-  background: rgba(255,122,69,.12);
+  background: rgba(var(--lavender-rgb),.12);
   border-color: var(--lavender-b);
   transform: translateY(-1px);
 }
@@ -1266,7 +1266,7 @@
   border-radius: 10px;
   overflow: hidden;
   background: #0d1014;
-  box-shadow: 0 0 120px rgba(217, 102, 61, .10), 0 30px 90px rgba(0, 0, 0, .45);
+  box-shadow: 0 0 120px rgba(var(--lavender-rgb), .10), 0 30px 90px rgba(0, 0, 0, .45);
 }
 .case-shot-bar {
   height: 34px;
@@ -1320,7 +1320,7 @@
 .case-side code {
   padding: 1px 6px 2px;
   border-radius: 4px;
-  background: rgba(217, 102, 61, .12);
+  background: rgba(var(--lavender-rgb), .12);
   color: var(--cs-accent);
   font: 400 .84em var(--cs-mono);
 }
@@ -1497,7 +1497,7 @@
 
 
 /* ---- internal-system + 404 state page ---- */
-.state-page{padding:9rem 0 5rem;min-height:80dvh;display:flex;align-items:center}
+.state-page{padding:8rem 0 5rem;min-height:80dvh;display:flex;align-items:flex-start}
 .state-term{max-width:34rem;background:var(--surface);border:1px solid var(--line);border-radius:.75rem;overflow:hidden;margin-bottom:2.25rem;box-shadow:0 0 60px rgba(var(--lavender-rgb),.08)}
 .state-bar{display:flex;align-items:center;gap:.4rem;padding:.7rem 1rem;border-bottom:1px solid var(--line);font:.72rem var(--mono);color:var(--muted)}
 .state-bar i{width:.6rem;height:.6rem;border-radius:50%;background:var(--field)}
@@ -1522,3 +1522,17 @@
 
 /* narrow phones: keep only the JK monogram so the nav links fit on one line */
 @media(max-width:430px){.logo{font-size:0;gap:0}.logo b{font-size:.78rem}}
+/* Contact: laptop-height screens. Tighter spacing so the Send button is
+   visible without scrolling (e.g. 1080p laptops with a browser toolbar). */
+@media (min-width: 901px) and (max-height: 900px) {
+  .contact-page { padding: 52px 0 80px; }
+  .contact-kicker { margin-bottom: 16px; }
+  .contact-page h1 { font-size: clamp(44px, 5vw, 64px); }
+  .contact-grid { margin-top: 34px; }
+  .contact-copy { min-height: 400px; }
+  .contact-form-card form { gap: 18px; }
+  .contact-form-card textarea { min-height: 150px; }
+}
+
+/* Contact: no portrait, so the left column no longer needs reserved height */
+.contact-copy{min-height:0}

@@ -1,8 +1,7 @@
 # Code of Conduct
 
-This project follows the
-[Contributor Covenant, version 2.1](https://www.contributor-covenant.org/version/2/1/code_of_conduct/),
-which is incorporated here by reference. The Covenant is published under
-[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+Be courteous. Keep feedback about the work, not the person, and do not harass,
+insult or discriminate against anyone in issues or any other space tied to
+this project. I may remove comments or block accounts that break this rule.
 
-To report unacceptable behavior, email jhzlklprs@gmail.com.
+Report concerns to jhzlklprs@gmail.com.

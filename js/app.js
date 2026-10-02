@@ -26,6 +26,20 @@ const card = (p) => `
     ${p.status ? `<span class="pill">${esc(p.status)}</span>` : ""}
   </a>`;
 
+const projectRow = (p) => `
+  <article class="prow reveal">
+    <a class="project-browser prow-browser" href="#/projects/${p.slug}" aria-label="Open ${esc(p.name)} case study">
+      <div class="browser-bar"><span class="browser-dot red"></span><span class="browser-dot yellow"></span><span class="browser-dot green"></span><span class="browser-url">${esc(p.browserUrl || "")}</span></div>
+      <div class="browser-screen"><img src="${asset(p.image)}" alt="${esc(p.name)} screenshot" loading="lazy"></div>
+    </a>
+    <div class="prow-body">
+      <h3><a href="#/projects/${p.slug}">${esc(p.name)}</a></h3>
+      <p class="dim">${esc(p.oneLiner || p.tagline)}</p>
+      <p class="tags">${p.stack.map((t) => `<span>${esc(t)}</span>`).join("")}</p>
+    </div>
+    <span class="mono muted prow-year">${p.year}</span>
+  </article>`;
+
 /* ---------- pages ---------- */
 function home() {
   const featured = S.projects.filter((p) => p.featured)
@@ -47,6 +61,12 @@ function home() {
     </div>
   </section>
 
+  <section class="band"><div class="wrap">
+    <div class="between"><div><p class="eyebrow">recent projects</p><h2>Systems the business runs on.</h2></div>
+      <a class="mono muted ext" href="#/projects">View all projects ${arrow}</a></div>
+    <div class="prows">${featured.map(projectRow).join("")}</div>
+  </div></section>
+
   <section class="band"><div class="wrap between">
     <div><p class="eyebrow">right now</p><h2 class="sm">${esc(now.role)} at ${esc(now.company)}.</h2><p class="dim narrow">${esc(now.summary)}</p></div>
     <a class="mono muted ext" href="#/work">Full work history ${arrow}</a>
@@ -56,12 +76,6 @@ function home() {
     <p class="eyebrow">focus areas</p>
     <div class="caps">${S.capabilities.map((c) => `
       <div class="cap reveal"><h3><span class="mono lavender">▸</span>${esc(c.title)}</h3><p class="dim">${esc(c.body)}</p></div>`).join("")}</div>
-  </div></section>
-
-  <section class="band"><div class="wrap">
-    <div class="between"><div><p class="eyebrow">recent projects</p><h2>Systems the business runs on.</h2></div>
-      <a class="mono muted ext" href="#/projects">View all projects ${arrow}</a></div>
-    <div class="grid3">${featured.map(card).join("")}</div>
   </div></section>
 
   <section class="band center"><div class="wrap">
@@ -265,10 +279,6 @@ function contact() {
           <a href="${P.socials.linkedin}" target="_blank" rel="noopener noreferrer"><span class="meta-icon">in</span><span>LinkedIn</span></a>
           <span><span class="meta-icon">⌖</span><span>Philippines</span></span>
         </div>
-        <div class="contact-portrait-wrap" aria-hidden="true">
-          <div class="contact-orbit orbit-a"></div><div class="contact-orbit orbit-b"></div>
-          <img src="assets/img/profile.png" alt="" class="contact-portrait">
-        </div>
       </div>
       <div class="contact-form-card">
         <form id="contactForm">
@@ -328,7 +338,7 @@ function privateSystem(slug) {
   return screen("internal." + p.slug, `${esc(p.name)} is an internal system.`,
     ["> connect " + p.slug, "> network ...... private", "> access ........ restricted", "> status ........ not publicly available"],
     `<a class="cta" href="#/projects/${p.slug}">Read the case study</a><a class="mono muted ext" href="#/projects">View all projects ${arrow}</a>`,
-    `<p class="dim">It runs inside a company network, so there's no public demo. The case study covers what it does, how it's built, and screenshots of the real interface.</p>`);
+    `<p class="dim">It runs inside a company network, so there's no public demo. The case study covers what it does, how it's built, and a layout mockup of the interface, with no real data.</p>`);
 }
 
 /* ---------- 3D hero ---------- */

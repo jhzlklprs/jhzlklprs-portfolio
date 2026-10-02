@@ -62,7 +62,7 @@ Third-party work, including the 3D model (CC BY 4.0), three.js, postprocessing, 
 
 ## License
 
-Source-available, all rights reserved. You can read and learn from the code under the terms in [LICENSE](LICENSE), but please do not publish it as your own site.
+All rights reserved. You can read the code and learn from it, but do not republish the site or reuse its content. Details are in [LICENSE](LICENSE).
 
 ## Citation
 

@@ -1,22 +1,12 @@
 # Security
 
-This is a static personal site: HTML, CSS, and JavaScript served from Vercel.
-It has no server code, accounts, or database. The contact form only opens the
-visitor's own email app through a `mailto:` link.
+The site is static files on Vercel. It has no accounts, database or server
+code, and the contact form only opens the visitor's own mail app.
 
-## Reporting a problem
+If you find a problem, please email jhzlklprs@gmail.com rather than opening a
+public issue, and include the URL or file, the steps to reproduce it and what
+you think it could lead to. Please do not touch other people's data or disrupt
+the site while testing. I will answer when I can.
 
-Please email jhzlklprs@gmail.com instead of opening a public issue. It helps if
-you include:
-
-- what you found and where (a URL or a file path);
-- how to reproduce it;
-- what you think the impact is.
-
-I will reply as soon as I can, but I am not promising a fixed response time.
-Please test gently: do not access anyone else's data or disrupt the site.
-
-## What this covers
-
-This repository and https://jahzeelkiel.vercel.app. Platforms the site relies
-on, such as Vercel and GitHub, have their own reporting channels.
+Issues in Vercel, GitHub or other platforms the site uses should go to those
+providers.
