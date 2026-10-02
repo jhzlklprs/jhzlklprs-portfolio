@@ -34,9 +34,9 @@ window.SITE={
    "Outside of work, I enjoy learning new technologies, building projects from scratch, and continuously improving how I think and solve problems as a developer."
   ],
   "now": [
-   "Maintaining and extending internal VB.NET / ASP.NET business systems.",
-   "Building a stronger foundation in C# and .NET through hands-on application development.",
-   "Developing deeper SQL and database skills while improving and modernizing existing business systems."
+   "Maintaining and extending internal VB.NET and ASP.NET business systems.",
+   "Developing applications with C# and .NET while strengthening modern application development skills.",
+   "Working with SQL Server and optimizing database queries to improve application performance and reliability."
   ],
   "facts": [
    {
