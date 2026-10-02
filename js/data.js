@@ -15,13 +15,13 @@ window.SITE={
   "position": {
    "title": "System Programmer I",
    "employer": "RPI",
-   "availability": "Open to software roles"
+   "availability": "Open to software development roles"
   },
   "heroLines": [
    ".NET developer.",
    "Building for the business."
   ],
-  "intro": "I build desktop and web applications with **ASP.NET, VB.NET, and SQL Server**, internal systems that support day-to-day business operations.",
+  "intro": "I build and maintain business applications with **.NET, C#, VB.NET, ASP.NET, and SQL Server** — from internal tools and dashboards to systems that support day-to-day operations.",
   "cta": "Open to software roles. If you have an internal system to build or keep running, I would like to hear about it.",
   "contactLead": "Open to software roles and systems work. The fastest way to reach me is right here."
  },
